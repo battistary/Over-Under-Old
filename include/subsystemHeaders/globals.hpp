@@ -1,11 +1,7 @@
 #include "main.h"
 
-// Variables
-
 // Controllers
-extern okapi::Controller controller1;
-extern okapi::Controller controller2;
-extern pros::Controller master;
+extern okapi::Controller controller;
 
 // Motors
 extern pros::Motor driveLeftFront;
@@ -20,8 +16,6 @@ extern pros::Motor intake;
 // Motor Groups
 extern pros::Motor_Group driveLeft;
 extern pros::Motor_Group driveRight;
-
-// ADI Digital Outs
 
 // Inertial Sensor
 extern pros::Imu imu;

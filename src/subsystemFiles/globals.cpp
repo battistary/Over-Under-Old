@@ -1,30 +1,24 @@
 #include "main.h"
 
-// Variables
-
 // Controllers
-okapi::Controller controller1(ControllerId::master);
-okapi::Controller controller2(ControllerId::partner);
+okapi::Controller controller(ControllerId::master);
 
 // Motors
 // Each raw encoder count is 0.375 degrees, so there are 960 in one revolution
-pros::Motor driveLeftFront(2, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor driveLeftCenter(3, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS); // moved from port 6
-pros::Motor driveLeftBack(4, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor driveRightFront(13, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor driveRightCenter(18, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor driveRightBack(19, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor flywheel(11, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor intake(9, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor driveLeftFront(1, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor driveLeftCenter(2, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor driveLeftBack(3, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor driveRightFront(4, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor driveRightCenter(5, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor driveRightBack(6, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor intake(7, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 
 // Motor Groups
 pros::Motor_Group driveLeft({driveLeftBack, driveLeftCenter, driveLeftFront});
 pros::Motor_Group driveRight({driveRightBack, driveRightCenter, driveRightFront});
 
-// ADI Digital Outs
-
 // Inertial Sensor
-pros::Imu imu(1);
+pros::Imu imu(8);
 
 // Chassis Controller PID
 std::shared_ptr<okapi::ChassisController> chassis =
