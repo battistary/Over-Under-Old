@@ -23,13 +23,12 @@ pros::Imu imu(8);
 // Chassis Controller PID
 std::shared_ptr<okapi::ChassisController> chassis =
     ChassisControllerBuilder()
-        .withMotors({2, 3, 4}, {13, 18, 19})
-        // Speed gearset, 36:48 gear ratio, 3.25" wheel diameter, 10.75" wheel track0
-        //.withDimensions({AbstractMotor::gearset::blue, (48.0 / 36.0)}, {{3.25_in, 25_in}, imev5BlueTPR})
-        .withDimensions({AbstractMotor::gearset::blue, (48.0 / 36.0)}, {{3.25_in, 10.75_in}, imev5BlueTPR})
+        .withMotors({1, 2, 3}, {4, 5, 6})
+        // Speed gearset, 36:84 gear ratio, 4.0" wheel diameter, Currently Unknown wheel track
+        .withDimensions({AbstractMotor::gearset::blue, (36.0 / 84.0)}, {{4_in, 0_in}, imev5BlueTPR})
         .withGains(
-            {0.0015, 0.0, 0.000048},//{0.0015,  0, 0.00008 }, //{0.00063, 0, 0.000014},	// Distance controller gains
-            {0.0019,  0, 0.000024}, // Turn controller gains
-            {0.0015, 0.0, 0.000048})//{0.001,   0, 0.0001  })	// Angle controller gains
+            {0.001, 0, 0.0001}, // Distance controller gains
+            {0.001, 0, 0.0001}, // Turn controller gains
+            {0.001, 0, 0.0001}) // Angle controller gains
         .withMaxVelocity(600)
         .build();
