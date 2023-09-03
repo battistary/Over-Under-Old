@@ -1,6 +1,4 @@
 #include "main.h"
-#include "pros/misc.h"
-#include "pros/motors.h"
 
 // Helper functions
 void setDrive(int left, int right) {
@@ -10,20 +8,16 @@ void setDrive(int left, int right) {
 
 void resetDriveEncoders() {
     driveLeftFront.tare_position();
-    driveLeftCenter.tare_position();
     driveLeftBack.tare_position();
     driveRightFront.tare_position();
-    driveRightCenter.tare_position();
     driveRightBack.tare_position();
 }
 
 double avgDriveEncoderValue() {
     return (fabs(driveLeftFront.get_position()) +
-    fabs(driveLeftCenter.get_position()) +
     fabs(driveLeftBack.get_position()) +
     fabs(driveRightFront.get_position()) +
-    fabs(driveRightCenter.get_position()) +
-    fabs(driveRightBack.get_position())) / 6;
+    fabs(driveRightBack.get_position())) / 4;
 }
 
 // Autonomous Driving Functions

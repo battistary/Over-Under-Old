@@ -39,7 +39,8 @@
 /**
  * You should add more #includes here
  */
-#include "okapi/api.hpp"
+#include "lemlib/api.hpp"
+//#include "okapi/api.hpp"
 //#include "pros/api_legacy.h"
 
 /**
@@ -50,9 +51,9 @@
  * concurrently! The okapi namespace will export all symbols inside the pros
  * namespace.
  */
-// using namespace pros;
-// using namespace pros::literals;
-using namespace okapi;
+using namespace pros;
+//using namespace pros::literals;
+//using namespace okapi;
 
 /**
  * Prototypes for the competition control tasks are redefined here to ensure
@@ -72,6 +73,8 @@ void opcontrol(void);
 #endif
 
 #ifdef __cplusplus
+#include "gif-pros/gifclass.hpp"
+#include "autoSelect/selection.h"
 #include "subsystemHeaders/globals.hpp"
 #include "subsystemHeaders/drive.hpp"
 //#include <iostream>

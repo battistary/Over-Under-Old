@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/rtos.hpp"
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -11,4 +12,19 @@
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+    if ( show_logo != true ) {
+        Gif gif("/usd/logo_stretched.gif", lv_scr_act());
+        show_logo = true;
+    }
+
+    if ( selector::auton == 1 || selector::auton == -1 ) {}      //run auton for #1 }
+
+    else if ( selector::auton == 2 || selector::auton == -2 ) {} //run auton for #2 }
+    
+    else if ( selector::auton == 3 || selector::auton == -3 ) {} //run auton for #3 }
+    
+    while ( true ) {
+        pros::delay(10);
+    }
+}

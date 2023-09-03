@@ -1,17 +1,17 @@
 #include "main.h"
 
+// Variables
+extern bool show_logo;
+extern Gif gif;
+
 // Controllers
-extern okapi::Controller controller;
+extern pros::Controller controller;
 
 // Motors
 extern pros::Motor driveLeftFront;
-extern pros::Motor driveLeftCenter;
 extern pros::Motor driveLeftBack;
 extern pros::Motor driveRightFront;
-extern pros::Motor driveRightCenter;
 extern pros::Motor driveRightBack;
-extern pros::Motor flywheel;
-extern pros::Motor intake;
 
 // Motor Groups
 extern pros::Motor_Group driveLeft;
@@ -20,5 +20,5 @@ extern pros::Motor_Group driveRight;
 // Inertial Sensor
 extern pros::Imu imu;
 
-// Chassis Controller
-extern std::shared_ptr<okapi::ChassisController> chassis;
+// LemLib chassis object
+extern lemlib::Chassis chassis;
