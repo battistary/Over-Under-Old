@@ -2,7 +2,6 @@
 
 // Variables
 bool show_logo = false;
-Gif gif("/usd/logo_stretched.gif", lv_scr_act());
 
 // Controllers
 pros::Controller controller(E_CONTROLLER_MASTER);
@@ -35,29 +34,29 @@ lemlib::OdomSensors_t sensors {
     nullptr, // N/A - vertical tracking wheel 2
     nullptr, // N/A - horizontal tracking wheel 1
     nullptr, // N/A - hortizontal tracking wheel 2 - wouldn't help much anyway
-    &imu // inertial sensor
+    &imu     // inertial sensor
 };
 
 // Forward/backward PID
 lemlib::ChassisController_t lateralController {
-    8, // kP
-    30, // kD
-    1, // smallErrorRange
-    100, // smallErrorTimeout
-    3, // largeErrorRange
-    500, // largeErrorTimeout
-    5 // slew rate
+    8,      // kP
+    30,     // kD
+    1,      // smallErrorRange
+    100,    // smallErrorTimeout
+    3,      // largeErrorRange
+    500,    // largeErrorTimeout
+    5       // slew rate
 };
  
 // Turning PID
 lemlib::ChassisController_t angularController {
-    4, // kP
-    40, // kD
-    1, // smallErrorRange
-    100, // smallErrorTimeout
-    3, // largeErrorRange
-    500, // largeErrorTimeout
-    0 // slew rate
+    4,      // kP
+    40,     // kD
+    1,      // smallErrorRange
+    100,    // smallErrorTimeout
+    3,      // largeErrorRange
+    500,    // largeErrorTimeout
+    0       // slew rate
 };
 
 // Create chassis object
