@@ -24,6 +24,9 @@ void autonomous() {
     
     else if ( selector::auton == 3 || selector::auton == -3 ) {} //run auton for #3 }
     
+    show_logo = false;
+    gif.clean();
+
     while ( true ) {
         pros::delay(10);
     }
