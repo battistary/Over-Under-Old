@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/motors.h"
 
 // Variables
 bool show_logo = false;
@@ -12,9 +13,14 @@ pros::Motor driveLeftBack(6, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCOD
 pros::Motor driveRightFront(11, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS); // port 11, not reversed
 pros::Motor driveRightBack(1, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);   // port 1, not reversed
 
+pros::Motor cataL1(1, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor cataL2(2, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor cataR1(3, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
+
 // Motor Groups
 pros::Motor_Group driveLeft({driveLeftBack, driveLeftFront});
 pros::Motor_Group driveRight({driveRightBack, driveRightFront});
+pros::Motor_Group catapult({cataL1, cataL2, cataR1});
 
 // Inertial Sensor
 pros::Imu imu(8);   // port 8

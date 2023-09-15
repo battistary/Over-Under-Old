@@ -1,12 +1,11 @@
 #include "main.h"
 
 void update_screen() {
-    // loop forever
     while (true) {
-        lemlib::Pose pose = chassis.getPose(); // get the current position of the robot
-        pros::lcd::print(0, "x: %f", pose.x); // print the x position
-        pros::lcd::print(1, "y: %f", pose.y); // print the y position
-        pros::lcd::print(2, "heading: %f", pose.theta); // print the heading
+        lemlib::Pose pose = chassis.getPose();          // Get the current position of the robot
+        pros::lcd::print(0, "x: %f", pose.x);           // Print the x position
+        pros::lcd::print(1, "y: %f", pose.y);           // Print the y position
+        pros::lcd::print(2, "heading: %f", pose.theta); // Print the heading
         pros::delay(10);
     }
 }
@@ -19,9 +18,10 @@ void update_screen() {
  */
 void initialize() {
 	chassis.calibrate(); // Calibrate the chassis
-    //Gif gif("/usd/logo_stretched.gif", lv_scr_act());
-	//lcd::initialize(); // Display the default PROS screen on the Brain screen
-    //pros::Task screenTask(update_screen); // create a task to print the position to the screen
+    Gif gif("/usd/logo_stretched.gif", lv_scr_act());
+	
+    //lcd::initialize();                    // Display the default PROS screen on the Brain screen
+    //pros::Task screenTask(update_screen); // Create a task to print the position to the screen
 }
 
 /**
@@ -41,6 +41,6 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-	gif.clean();
+//	gif.clean();
     selector::init();
 }

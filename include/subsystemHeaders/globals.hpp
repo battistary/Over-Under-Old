@@ -13,9 +13,14 @@ extern pros::Motor driveLeftBack;
 extern pros::Motor driveRightFront;
 extern pros::Motor driveRightBack;
 
+extern pros::Motor cataL1;
+extern pros::Motor cataL2;
+extern pros::Motor cataR1;
+
 // Motor Groups
 extern pros::Motor_Group driveLeft;
 extern pros::Motor_Group driveRight;
+extern pros::Motor_Group catapult;
 
 // Inertial Sensor
 extern pros::Imu imu;

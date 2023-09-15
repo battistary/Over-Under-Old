@@ -77,6 +77,8 @@ void opcontrol(void);
 #include "autoSelect/selection.h"
 #include "subsystemHeaders/globals.hpp"
 #include "subsystemHeaders/drive.hpp"
+#include "subsystemHeaders/catapult.hpp"
+#include "subsystemHeaders/intake.hpp"
 //#include <iostream>
 #endif
 

@@ -25,6 +25,8 @@ void opcontrol() {
         double right = controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) - controller.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
         driveLeft.move(left);
         driveRight.move(right);
+        
+        setCata();
         pros::delay(10);
     }
 }

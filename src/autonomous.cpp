@@ -18,14 +18,14 @@ void autonomous() {
         show_logo = true;
     }
 
-    if ( selector::auton == 1 || selector::auton == -1 ) {}      //run auton for #1 }
+    if ( selector::auton == 1 || selector::auton == -1 ) {}      // Run auton #1 }
 
-    else if ( selector::auton == 2 || selector::auton == -2 ) {} //run auton for #2 }
+    else if ( selector::auton == 2 || selector::auton == -2 ) {} // Run auton #2 }
     
-    else if ( selector::auton == 3 || selector::auton == -3 ) {} //run auton for #3 }
+    else if ( selector::auton == 3 || selector::auton == -3 ) {} // Run auton #3 }
     
     show_logo = false;
-    gif.clean();
+//    gif.clean();
 
     while ( true ) {
         pros::delay(10);
