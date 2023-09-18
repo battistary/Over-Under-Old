@@ -17,10 +17,16 @@ extern pros::Motor cataL1;
 extern pros::Motor cataL2;
 extern pros::Motor cataR1;
 
+extern pros::Motor intake;
+
 // Motor Groups
 extern pros::Motor_Group driveLeft;
 extern pros::Motor_Group driveRight;
 extern pros::Motor_Group catapult;
+
+// Pneumatic Pistons
+extern pros::ADIDigitalOut intakePiston1;
+extern pros::ADIDigitalOut intakePiston2;
 
 // Inertial Sensor
 extern pros::Imu imu;

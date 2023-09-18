@@ -17,10 +17,16 @@ pros::Motor cataL1(1, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_COUN
 pros::Motor cataL2(2, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
 pros::Motor cataR1(3, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
 
+pros::Motor intake(4, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
+
 // Motor Groups
 pros::Motor_Group driveLeft({driveLeftBack, driveLeftFront});
 pros::Motor_Group driveRight({driveRightBack, driveRightFront});
 pros::Motor_Group catapult({cataL1, cataL2, cataR1});
+
+// Pneumatic Pistons
+pros::ADIDigitalOut intakePiston1('A', false);
+pros::ADIDigitalOut intakePiston2('B', false);
 
 // Inertial Sensor
 pros::Imu imu(8);   // port 8
