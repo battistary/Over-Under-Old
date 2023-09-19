@@ -18,7 +18,6 @@ void update_screen() {
  */
 void initialize() {
 	chassis.calibrate(); // Calibrate the chassis
-    Gif gif("/usd/logo_stretched.gif", lv_scr_act());
 	
     //lcd::initialize();                    // Display the default PROS screen on the Brain screen
     //pros::Task screenTask(update_screen); // Create a task to print the position to the screen
@@ -41,6 +40,7 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-//	gif.clean();
+	gif.pause();
+    show_logo = false;
     selector::init();
 }

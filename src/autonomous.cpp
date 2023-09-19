@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/llemu.hpp"
 #include "pros/rtos.hpp"
 
 /**
@@ -14,7 +15,7 @@
  */
 void autonomous() {
     if ( show_logo != true ) {
-        Gif gif("/usd/logo_stretched.gif", lv_scr_act());
+        gif.resume();
         show_logo = true;
     }
 
@@ -23,10 +24,12 @@ void autonomous() {
     else if ( selector::auton == 2 || selector::auton == -2 ) {} // Run auton #2 }
     
     else if ( selector::auton == 3 || selector::auton == -3 ) {} // Run auton #3 }
-    
-    show_logo = false;
-//    gif.clean();
 
+    gif.pause();
+    show_logo = false;
+    lcd::initialize();
+    pros::lcd::set_text(1, "Auton Finished!");
+    
     while ( true ) {
         pros::delay(10);
     }

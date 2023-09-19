@@ -2,7 +2,8 @@
 #include "pros/motors.h"
 
 // Variables
-bool show_logo = false;
+bool show_logo = true;
+Gif gif("/usd/logo_stretched.gif", lv_scr_act());
 
 // Controllers
 pros::Controller controller(E_CONTROLLER_MASTER);

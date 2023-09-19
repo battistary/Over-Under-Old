@@ -16,7 +16,7 @@
  */
 void opcontrol() {
     if ( show_logo != true ) {
-        Gif gif("/usd/logo_stretched.gif", lv_scr_act());
+        gif.resume();
         show_logo = true;
     }
 
