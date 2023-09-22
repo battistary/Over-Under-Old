@@ -1,5 +1,4 @@
 #include "main.h"
-#include "pros/rtos.hpp"
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -15,14 +14,9 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-    if ( show_logo != true ) {
-        gif.resume();
-        show_logo = true;
-    }
-
     while ( true ) {
-        double left = controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) + controller.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
-        double right = controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) - controller.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
+        double left = controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) - controller.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
+        double right = controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) + controller.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
         driveLeft.move(left);
         driveRight.move(right);
         

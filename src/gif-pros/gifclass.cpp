@@ -1,4 +1,5 @@
 #include "gif-pros/gifclass.hpp"
+#include "pros/llemu.hpp"
 
 /**
  * MIT License
@@ -78,6 +79,7 @@ void Gif::pause(){
  * Resumes the GIF task
  */
 void Gif::resume(){
+	pros::lcd::initialize();
 	pros::c::task_resume(_task);
 }
 

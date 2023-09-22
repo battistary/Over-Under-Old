@@ -31,5 +31,8 @@ extern pros::ADIDigitalOut intakePiston2;
 // Inertial Sensor
 extern pros::Imu imu;
 
+// Rotation Sensor
+extern pros::Rotation rotation;
+
 // LemLib chassis object
 extern lemlib::Chassis chassis;

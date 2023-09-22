@@ -1,6 +1,4 @@
 #include "main.h"
-#include "pros/llemu.hpp"
-#include "pros/rtos.hpp"
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -14,21 +12,11 @@
  * from where it left off.
  */
 void autonomous() {
-    if ( show_logo != true ) {
-        gif.resume();
-        show_logo = true;
-    }
-
     if ( selector::auton == 1 || selector::auton == -1 ) {}      // Run auton #1 }
 
     else if ( selector::auton == 2 || selector::auton == -2 ) {} // Run auton #2 }
     
     else if ( selector::auton == 3 || selector::auton == -3 ) {} // Run auton #3 }
-
-    gif.pause();
-    show_logo = false;
-    lcd::initialize();
-    pros::lcd::set_text(1, "Auton Finished!");
     
     while ( true ) {
         pros::delay(10);

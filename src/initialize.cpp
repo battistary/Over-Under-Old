@@ -28,7 +28,9 @@ void initialize() {
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
-void disabled() {}
+void disabled() {
+    Gif newGif("/usd/logo_stretched.gif", lv_scr_act());
+}
 
 /**
  * Runs after initialize(), and before autonomous when connected to the Field
@@ -40,7 +42,6 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-	gif.pause();
-    show_logo = false;
+	gif.clean();
     selector::init();
 }
