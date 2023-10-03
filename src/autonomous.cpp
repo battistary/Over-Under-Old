@@ -12,12 +12,18 @@
  * from where it left off.
  */
 void autonomous() {
-    if ( selector::auton == 1 || selector::auton == -1 ) {}      // Run auton #1 }
+    if ( selector::auton == 1 || selector::auton == -1 ) { // Run pre-load auton
+        // file name: pre-load.txt
+        // timeout: 2000 ms
+        // lookahead distance: 15 inches
+        chassis.setPose(-35.23569913419913, 60.18132683982684, 33.29199066393649);
+        chassis.follow("pre-load.txt", 2000, 15);
+    }
 
-    else if ( selector::auton == 2 || selector::auton == -2 ) {} // Run auton #2 }
-    
-    else if ( selector::auton == 3 || selector::auton == -3 ) {} // Run auton #3 }
-    
+    else if ( selector::auton == 2 || selector::auton == -2 ) {} // Run match-load auton
+
+    else if ( selector::auton == 3 || selector::auton == -3 ) {} // Run skills auton
+
     while ( true ) {
         pros::delay(10);
     }

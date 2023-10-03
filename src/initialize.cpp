@@ -18,6 +18,7 @@ void update_screen() {
  */
 void initialize() {
 	chassis.calibrate(); // Calibrate the chassis
+    chassis.setPose(0, 0, 0); // X: 0, Y: 0, Heading: 0
 	
     //lcd::initialize();                    // Display the default PROS screen on the Brain screen
     //pros::Task screenTask(update_screen); // Create a task to print the position to the screen

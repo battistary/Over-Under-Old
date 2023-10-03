@@ -5,7 +5,7 @@
 //selector configuration
 #define HUE 240
 #define DEFAULT 1
-#define AUTONS "Front", "Back", "Do Nothing"
+#define AUTONS "Pre-Load", "Match-Load", "Skills"
 
 namespace selector{
 
