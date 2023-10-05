@@ -13,9 +13,9 @@ extern pros::Motor driveLeftBack;
 extern pros::Motor driveRightFront;
 extern pros::Motor driveRightBack;
 
-extern pros::Motor cataL1;
-extern pros::Motor cataL2;
-extern pros::Motor cataR1;
+extern pros::Motor cataLeftFront;
+extern pros::Motor cataLeftBack;
+extern pros::Motor cataRight;
 
 extern pros::Motor intake;
 
