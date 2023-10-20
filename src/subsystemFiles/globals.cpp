@@ -9,16 +9,16 @@ Gif gif("/usd/logo_stretched.gif", lv_scr_act());
 pros::Controller controller(E_CONTROLLER_MASTER);
 
 // Motors
-pros::Motor driveLeftFront(20, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);   // port 20, reversed
-pros::Motor driveLeftBack(7, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);     // port 6, reversed
-pros::Motor driveRightFront(11, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS); // port 11, not reversed
-pros::Motor driveRightBack(6, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);   // port 1, not reversed
+pros::Motor driveLeftFront(11, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);   // port 20, reversed
+pros::Motor driveLeftBack(12, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);     // port 6, reversed
+pros::Motor driveRightFront(20, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS); // port 11, not reversed
+pros::Motor driveRightBack(19, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);   // port 1, not reversed
 
-pros::Motor cataLeftFront(1, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor cataLeftBack(2, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor cataRight(3, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor cataLeftFront(13, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor cataLeftBack(14, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor cataRight(18, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_COUNTS);
 
-pros::Motor intake(4, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor intake(17, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
 
 // Motor Groups
 pros::Motor_Group driveLeft({driveLeftBack, driveLeftFront});
@@ -26,14 +26,13 @@ pros::Motor_Group driveRight({driveRightBack, driveRightFront});
 pros::Motor_Group catapult({cataLeftFront, cataLeftBack, cataRight});
 
 // Pneumatic Pistons
-pros::ADIDigitalOut intakePiston1('A', false);
-pros::ADIDigitalOut intakePiston2('B', false);
+pros::ADIDigitalOut intakePiston('A', false);
 
 // Inertial Sensor
-pros::Imu imu(8);
+pros::Imu imu(16);
 
 // Rotation Sensor
-pros::Rotation rotation_sensor(5);
+pros::Rotation rotation_sensor(15);
 
 // Drivetrain struct
 lemlib::Drivetrain_t drivetrain {

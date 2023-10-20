@@ -21,14 +21,14 @@ double avgDriveEncoderValue() {
 }
 
 // Autonomous Driving Functions
-void translate(int units, int voltage) {
+void translate(double units, int voltage) {
     // Define a direction based on units provided
-    int direction = abs(units) / units; // Returns either 1 or -1
+    int direction = fabs(units) / units; // Returns either 1 or -1
     // Reset motor encoders and gyro rotation
     resetDriveEncoders();
     imu.tare_rotation();
     // Drive forward until units are reached
-    while( avgDriveEncoderValue() < abs(units) ) {
+    while( avgDriveEncoderValue() < fabs(units) ) {
         // Gyro correction if bot veers off path
         // If correction is too much, multiply gyro degrees by 0.75 or 0.5
         setDrive(voltage * direction - (imu.get_rotation() * 10), voltage * direction + (imu.get_rotation() * 10));
@@ -65,14 +65,14 @@ void rotate(int degrees, int voltage) {
     if ( direction == 1 ) {
         // Correct for overshoot
         if ( imu.get_rotation() > degrees ) {
-            setDrive(-38 * direction, 38 * direction);
+            setDrive(-30 * direction, 30 * direction);
             while ( imu.get_rotation() > degrees ) {
                 pros::delay(10);
             }
         }
         // Correct for undershoot
         else if ( imu.get_rotation() < degrees ) {
-            setDrive(38 * direction, -38 * direction);
+            setDrive(30 * direction, -30 * direction);
             while ( imu.get_rotation() < degrees ) {
                 pros::delay(10);
             }
@@ -81,14 +81,14 @@ void rotate(int degrees, int voltage) {
     else {
         // Correct for overshoot
         if ( imu.get_rotation() > degrees ) {
-            setDrive(-38 * direction, 38 * direction);
+            setDrive(-30 * direction, 30 * direction);
             while ( imu.get_rotation() < degrees ) {
                 pros::delay(10);
             }
         }
         // Correct for undershoot
         else if ( imu.get_rotation() < degrees ) {
-            setDrive(38 * direction, -38 * direction);
+            setDrive(30 * direction, -30 * direction);
             while ( imu.get_rotation() > degrees ) {
                 pros::delay(10);
             }

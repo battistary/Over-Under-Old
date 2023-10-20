@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/motors.h"
 
 void update_screen() {
     while (true) {
@@ -19,6 +20,11 @@ void update_screen() {
 void initialize() {
 	chassis.calibrate(); // Calibrate the chassis
     chassis.setPose(0, 0, 0); // X: 0, Y: 0, Heading: 0
+
+    driveLeftFront.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    driveLeftBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    driveRightFront.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    driveRightBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 	
     //lcd::initialize();                    // Display the default PROS screen on the Brain screen
     //pros::Task screenTask(update_screen); // Create a task to print the position to the screen

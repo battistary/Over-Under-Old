@@ -2,4 +2,4 @@
 
 void setIntake();
 
-void setPistons();
+void setPiston();

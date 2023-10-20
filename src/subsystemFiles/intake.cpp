@@ -1,5 +1,7 @@
 #include "main.h"
 
+bool raise_intake = false;
+
 void setIntake() {
     if (controller.get_digital(E_CONTROLLER_DIGITAL_R1)) {
         intake = 127.0;
@@ -12,13 +14,17 @@ void setIntake() {
     }
 }
 
-void setPistons() {
-    if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
-        intakePiston1.set_value(1);
-        intakePiston2.set_value(1);
+void setPiston() {
+  if (controller.get_digital(E_CONTROLLER_DIGITAL_A)) { // Set to controller2 for comp
+    if ( raise_intake == false ) {
+      intakePiston.set_value(1);
+      raise_intake = true;
+      pros::delay(500);
     }
-    else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
-        intakePiston1.set_value(0);
-        intakePiston2.set_value(0);
+    else {
+      intakePiston.set_value(0);
+      raise_intake = false;
+      pros::delay(500);
     }
+  }
 }

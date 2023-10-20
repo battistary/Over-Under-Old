@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/llemu.hpp"
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -13,11 +14,23 @@
  */
 void autonomous() {
     if ( selector::auton == 1 || selector::auton == -1 ) { // Run pre-load auton
-        // file name: pre-load.txt
-        // timeout: 2000 ms
-        // lookahead distance: 15 inches
-        chassis.setPose(-35.23569913419913, 60.18132683982684, 33.29199066393649);
-        chassis.follow("pre-load.txt", 2000, 15);
+        // 1 motor turn = 10 inches
+        // Turn at 38/128 voltage
+        // Turns are relative, not absolute
+
+        lcd::initialize();
+        translate(2.4, 50);
+        rotate(90, 38);
+        translate(2.4, 50);
+        rotate(90, 38);
+        translate(-3.7, 128);
+        rotate(90, 38);
+        translate(4.8, 50);
+
+
+
+
+        pros::lcd::print(2, "%f", imu.get_rotation());
     }
 
     else if ( selector::auton == 2 || selector::auton == -2 ) {} // Run match-load auton
