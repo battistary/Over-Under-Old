@@ -26,6 +26,9 @@ extern pros::Motor_Group catapult;
 
 // Pneumatic Pistons
 extern pros::ADIDigitalOut intakePiston;
+extern pros::ADIDigitalOut wingPistonLeft;
+extern pros::ADIDigitalOut wingPistonRight;
+
 
 // Inertial Sensor
 extern pros::Imu imu;
