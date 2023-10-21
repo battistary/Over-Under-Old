@@ -15,7 +15,7 @@ void setIntake() {
 }
 
 void setPiston() {
-  if (controller.get_digital(E_CONTROLLER_DIGITAL_A)) { // Set to controller2 for comp
+  if (controller.get_digital(E_CONTROLLER_DIGITAL_X)) { // Set to controller2 for comp
     if ( raise_intake == false ) {
       intakePiston.set_value(1);
       raise_intake = true;

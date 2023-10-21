@@ -79,6 +79,7 @@ void opcontrol(void);
 #include "subsystemHeaders/drive.hpp"
 #include "subsystemHeaders/catapult.hpp"
 #include "subsystemHeaders/intake.hpp"
+#include "subsystemHeaders/wings.hpp"
 //#include <iostream>
 #endif
 

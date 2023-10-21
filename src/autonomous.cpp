@@ -18,24 +18,39 @@ void autonomous() {
         // Turn at 38/128 voltage
         // Turns are relative, not absolute
 
-        lcd::initialize();
-        translate(2.4, 50);
+        // 1 motor turn = 10 inches
+        // Turn at 38/128 voltage
+        // Turns are relative, not absolute
+
+        translate(-3.6, 50);
+        rotate(-45, 38);
+        translate(-3.6, 128);
         rotate(90, 38);
         translate(2.4, 50);
-        rotate(90, 38);
-        translate(-3.7, 128);
-        rotate(90, 38);
-        translate(4.8, 50);
-
-
-
-
-        pros::lcd::print(2, "%f", imu.get_rotation());
+        intakePiston.set_value(1);
+        translate(2.4, 50);
+        intake = 127;
+        pros::delay(1000);
+        intake = 0;
+        translate(-2.4, 50);
+        rotate(180, 38);
+        intake = -127;
+        pros::delay(1000);
+        intakePiston.set_value(0);
+        rotate(180, 38);
+        translate(-3.6, 128);
+        translate(3.6, 50);
+        rotate(-90, 38);
+        translate(5.1, 50);
+        rotate(-90, 38);
+        translate(2.0, 50);
     }
 
     else if ( selector::auton == 2 || selector::auton == -2 ) {} // Run match-load auton
 
-    else if ( selector::auton == 3 || selector::auton == -3 ) {} // Run skills auton
+    else if ( selector::auton == 3 || selector::auton == -3 ) { // Run skills auton
+        catapult = (-127.0 * 0.50);
+    }
 
     while ( true ) {
         pros::delay(10);
