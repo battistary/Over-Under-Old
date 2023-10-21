@@ -21,25 +21,8 @@ void autonomous() {
         translate(-3.6, 50);
         rotate(-45, 38);
         translate(-3.6, 128);
-        rotate(90, 38);
-        translate(2.4, 50);
-        intakePiston.set_value(1);
-        translate(2.4, 50);
-        intake = 127;
-        pros::delay(1000);
-        intake = 0;
-        translate(-2.4, 50);
-        rotate(180, 38);
-        intake = -127;
-        pros::delay(1000);
-        intakePiston.set_value(0);
-        rotate(180, 38);
-        translate(-3.6, 128);
-        translate(3.6, 50);
-        rotate(-90, 38);
-        translate(5.1, 50);
-        rotate(-90, 38);
-        translate(2.0, 50);
+        translate(-3.6, 50);
+        rotate(-45, 38);
     }
 
     else if ( selector::auton == 2 || selector::auton == -2 ) {} // Run match-load auton

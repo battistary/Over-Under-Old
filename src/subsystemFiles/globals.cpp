@@ -27,8 +27,8 @@ pros::Motor_Group catapult({cataLeftFront, cataLeftBack, cataRight});
 
 // Pneumatic Pistons
 pros::ADIDigitalOut intakePiston('A', false);
-pros::ADIDigitalOut wingPistonLeft('B', false);
-pros::ADIDigitalOut wingPistonRight('C', false);
+pros::ADIDigitalOut wingPistonLeft('G', false);
+pros::ADIDigitalOut wingPistonRight('H', false);
 
 
 // Inertial Sensor
