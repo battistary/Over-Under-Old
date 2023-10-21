@@ -18,9 +18,9 @@ void autonomous() {
         // Turn at 38/128 voltage
         // Turns are relative, not absolute
 
-        translate(-3.6, 50);
+        translate(3.6, 50);
         rotate(-45, 38);
-        translate(-3.6, 128);
+        translate(3.6, 128);
         translate(-3.6, 50);
         rotate(-45, 38);
     }

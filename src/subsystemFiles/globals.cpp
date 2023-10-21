@@ -9,10 +9,10 @@ Gif gif("/usd/logo_stretched.gif", lv_scr_act());
 pros::Controller controller(E_CONTROLLER_MASTER);
 
 // Motors
-pros::Motor driveLeftFront(11, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);   // port 20, reversed
-pros::Motor driveLeftBack(12, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);     // port 6, reversed
-pros::Motor driveRightFront(20, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS); // port 11, not reversed
-pros::Motor driveRightBack(19, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);   // port 1, not reversed
+pros::Motor driveLeftFront(19, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);   // port 20, reversed
+pros::Motor driveLeftBack(20, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);     // port 6, reversed
+pros::Motor driveRightFront(12, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS); // port 11, not reversed
+pros::Motor driveRightBack(11, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);   // port 1, not reversed
 
 pros::Motor cataLeftFront(13, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
 pros::Motor cataLeftBack(14, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
