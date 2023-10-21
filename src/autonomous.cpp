@@ -20,12 +20,14 @@ void autonomous() {
 
         translate(3.6, 50);
         rotate(-45, 38);
-        translate(3.6, 128);
-        translate(-3.6, 50);
-        rotate(-45, 38);
+        translate(3.6, 127);
     }
 
-    else if ( selector::auton == 2 || selector::auton == -2 ) {} // Run match-load auton
+    else if ( selector::auton == 2 || selector::auton == -2 ) { // Run match-load auton
+        translate(3.6, 50);
+        rotate(45, 38);
+        translate(2.0, 127);
+    }
 
     else if ( selector::auton == 3 || selector::auton == -3 ) { // Run skills auton
         catapult = (-127.0 * 0.50);
