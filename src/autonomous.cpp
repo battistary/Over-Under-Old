@@ -18,10 +18,13 @@ void autonomous() {
         // Turn at 38/128 voltage
         // Turns are relative, not absolute
 
+<<<<<<< HEAD
         // 1 motor turn = 10 inches
         // Turn at 38/128 voltage
         // Turns are relative, not absolute
 
+=======
+>>>>>>> 07a5230a153cc21e09dad679723f5ea975136896
         translate(-3.6, 50);
         rotate(-45, 38);
         translate(-3.6, 128);
@@ -36,7 +39,11 @@ void autonomous() {
         rotate(180, 38);
         intake = -127;
         pros::delay(1000);
+<<<<<<< HEAD
         intakePiston.set_value(0);
+=======
+        intakePison.set_value(0);
+>>>>>>> 07a5230a153cc21e09dad679723f5ea975136896
         rotate(180, 38);
         translate(-3.6, 128);
         translate(3.6, 50);
