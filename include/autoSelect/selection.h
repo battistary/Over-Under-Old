@@ -4,7 +4,7 @@
 
 //selector configuration
 #define HUE 240
-#define DEFAULT 1
+#define DEFAULT 1 // Red Alliance Side
 #define AUTONS "Alliance Goal", "Opponent Goal", "Skills"
 
 namespace selector{

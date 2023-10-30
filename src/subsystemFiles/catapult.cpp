@@ -2,10 +2,10 @@
 
 void setCata() {
     if (controller.get_digital(E_CONTROLLER_DIGITAL_A)) {
-        catapult = (127.0 * 0.75);
+        catapult = 0.75 * 127.0;
     }
     else if (controller.get_digital(E_CONTROLLER_DIGITAL_B)) {
-        catapult = (-127.0 * 0.75);
+        catapult = 0.75 * -127.0;
     }
     else {
         catapult = 0;

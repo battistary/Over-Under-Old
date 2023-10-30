@@ -13,27 +13,35 @@
  * from where it left off.
  */
 void autonomous() {
-    if ( selector::auton == 1 || selector::auton == -1 ) { // Run pre-load auton
+        // drive.cpp backup notes
         // 1 motor turn = 10 inches
-        // Turn at 38/128 voltage
+        // Turn at 38/127 voltage
         // Turns are relative, not absolute
-
-        translate(3.6, 50);
-        rotate(-45, 38);
-        translate(3.6, 127);
+    if ( selector::auton == 1 ) {                       // Red Alliance Side
+        chassis.setPose(41, -57, imu.get_rotation());
+        chassis.follow("red_alliance_side.txt", 2000, 10);
     }
 
-    else if ( selector::auton == 2 || selector::auton == -2 ) { // Run match-load auton
-        translate(3.6, 50);
-        rotate(45, 38);
-        translate(2.0, 127);
+    else if ( selector::auton == 2 ) {                  // Red Opponent Side
+        chassis.setPose(-41, -57, imu.get_rotation());
+        chassis.follow("red_opponent_side.txt", 2000, 10);
     }
 
-    else if ( selector::auton == 3 || selector::auton == -3 ) { // Run skills auton
-        catapult = (-127.0 * 0.50);
+    else if ( selector::auton == -1 ) {                 // Blue Alliance Side
+        chassis.setPose(-41, 57, imu.get_rotation());
+        chassis.follow("blue_alliance_side.txt", 2000, 10);
     }
 
-    while ( true ) {
-        pros::delay(10);
+    else if ( selector::auton == -2 ) {                 // Blue Opponent Side
+        chassis.setPose(41, 57, imu.get_rotation());
+        chassis.follow("blue_opponent_side.txt", 2000, 10);
+    }
+
+    else if ( selector::auton == 3 || selector::auton == -3 || selector::auton == 0 ) { // Skills auton
+        chassis.setPose(0, 0, imu.get_rotation());
+
+        while ( true ) {
+            catapult = 0.5 * -127.0;
+        }
     }
 }
