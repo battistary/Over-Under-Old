@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/motors.hpp"
 
 // Variables
 extern bool show_logo;
@@ -10,25 +11,23 @@ extern pros::Controller controller;
 // Motors
 extern pros::Motor driveLeftFront;
 extern pros::Motor driveLeftBack;
+extern pros::Motor driveLilMiddleLeft;
 extern pros::Motor driveRightFront;
 extern pros::Motor driveRightBack;
+extern pros::Motor driveLilMiddleRight;
 
-extern pros::Motor cataLeftFront;
-extern pros::Motor cataLeftBack;
-extern pros::Motor cataRight;
-
+extern pros::Motor catapult;
 extern pros::Motor intake;
+extern pros::Motor lift;
 
 // Motor Groups
 extern pros::Motor_Group driveLeft;
 extern pros::Motor_Group driveRight;
-extern pros::Motor_Group catapult;
 
 // Pneumatic Pistons
-extern pros::ADIDigitalOut intakePiston;
+extern pros::ADIDigitalOut liftPiston;
 extern pros::ADIDigitalOut wingPistonLeft;
 extern pros::ADIDigitalOut wingPistonRight;
-
 
 // Inertial Sensor
 extern pros::Imu imu;

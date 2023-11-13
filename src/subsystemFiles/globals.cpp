@@ -1,5 +1,6 @@
 #include "main.h"
 #include "pros/motors.h"
+#include "pros/motors.hpp"
 
 // Variables
 bool show_logo = true;
@@ -9,33 +10,31 @@ Gif gif("/usd/logo_stretched.gif", lv_scr_act());
 pros::Controller controller(E_CONTROLLER_MASTER);
 
 // Motors
-pros::Motor driveLeftFront(19, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);   // port 20, reversed
-pros::Motor driveLeftBack(20, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);     // port 6, reversed
-pros::Motor driveRightFront(12, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS); // port 11, not reversed
-pros::Motor driveRightBack(11, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);   // port 1, not reversed
+pros::Motor driveLeftFront(11, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor driveLeftBack(12, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor driveLilMiddleLeft(13, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor driveRightFront(20, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor driveRightBack(19, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor driveLilMiddleRight(18, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_COUNTS);
 
-pros::Motor cataLeftFront(13, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor cataLeftBack(14, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor cataRight(18, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_COUNTS);
-
-pros::Motor intake(17, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor catapult(14, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor intake(15, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor lift(16, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
 
 // Motor Groups
-pros::Motor_Group driveLeft({driveLeftBack, driveLeftFront});
-pros::Motor_Group driveRight({driveRightBack, driveRightFront});
-pros::Motor_Group catapult({cataLeftFront, cataLeftBack, cataRight});
+pros::Motor_Group driveLeft({driveLeftFront, driveLeftBack, driveLilMiddleLeft});
+pros::Motor_Group driveRight({driveRightFront, driveLeftBack, driveLilMiddleRight});
 
 // Pneumatic Pistons
-pros::ADIDigitalOut intakePiston('A', false);
+pros::ADIDigitalOut liftPiston('A', false);
 pros::ADIDigitalOut wingPistonLeft('G', false);
 pros::ADIDigitalOut wingPistonRight('H', false);
 
-
 // Inertial Sensor
-pros::Imu imu(16);
+pros::Imu imu(17);
 
 // Rotation Sensor
-pros::Rotation rotation_sensor(15);
+//pros::Rotation rotation_sensor(20);
 
 // Drivetrain struct
 lemlib::Drivetrain_t drivetrain {

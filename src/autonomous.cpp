@@ -1,3 +1,4 @@
+#include "lemlib/pose.hpp"
 #include "main.h"
 #include "pros/llemu.hpp"
 
@@ -17,31 +18,61 @@ void autonomous() {
         // 1 motor turn = 10 inches
         // Turn at 38/127 voltage
         // Turns are relative, not absolute
-    if ( selector::auton == 1 ) {                       // Red Alliance Side
-        chassis.setPose(41, -57, imu.get_rotation());
-        chassis.follow("red_alliance_side.txt", 2000, 10);
+    if ( selector::auton == 1 || selector::auton == -1 ) {                       // Alliance Side
+        chassis.setPose(38, -55, 45);
+        chassis.moveTo(63, -26, 2000);  // Tested working
+
+        /* Experimental */
+
+        lemlib::Pose pose = chassis.getPose();
+        chassis.turnTo(pose.x, -32, 2000);
+        chassis.moveTo(pose.x, -32, 2000);
+//
+        //chassis.turnTo(55, -53, 2000);
+        //chassis.moveTo(55, -53, 2000);
+        //wingPistonLeft.set_value(1);
+//
+        //chassis.turnTo(0, -53, 2000);
+        //wingPistonLeft.set_value(0);
+//
+        //chassis.turnTo(36, -53, 2000);
+        //chassis.moveTo(36, -53, 2000);
+//
+        //chassis.turnTo(0, -60, 2000);
+        //chassis.moveTo(0, -60, 2000);
+//
+        //wingPistonRight.set_value(1);
     }
 
-    else if ( selector::auton == 2 ) {                  // Red Opponent Side
-        chassis.setPose(-41, -57, imu.get_rotation());
-        chassis.follow("red_opponent_side.txt", 2000, 10);
-    }
+    else if ( selector::auton == 2 || selector::auton == -2 ) {                  // Opponent Side
+        chassis.setPose(-38, -55, -45);
+        chassis.moveTo(-63, -26, 2000); // Tested working
 
-    else if ( selector::auton == -1 ) {                 // Blue Alliance Side
-        chassis.setPose(-41, 57, imu.get_rotation());
-        chassis.follow("blue_alliance_side.txt", 2000, 10);
-    }
+        /* Experimental */
 
-    else if ( selector::auton == -2 ) {                 // Blue Opponent Side
-        chassis.setPose(41, 57, imu.get_rotation());
-        chassis.follow("blue_opponent_side.txt", 2000, 10);
+        lemlib::Pose pose = chassis.getPose();
+        chassis.turnTo(-1 * pose.x, -32, 2500);
+        chassis.moveTo(-1 * pose.x, -32, 2000);
+//
+        //chassis.turnTo(-55, -53, 2000);
+        //chassis.moveTo(-55, -53, 2000);
+        //wingPistonLeft.set_value(1);
+//
+        //chassis.turnTo(0, -53, 2000);
+        //wingPistonLeft.set_value(0);
+//
+        //chassis.turnTo(-36, -53, 2000);
+        //chassis.moveTo(-36, -53, 2000);
+//
+        //chassis.turnTo(0, -60, 2000);
+        //chassis.moveTo(0, -60, 2000);
+//
+        //wingPistonRight.set_value(1);
     }
 
     else if ( selector::auton == 3 || selector::auton == -3 || selector::auton == 0 ) { // Skills auton
-        chassis.setPose(0, 0, imu.get_rotation());
-
         while ( true ) {
-            catapult = 0.5 * -127.0;
+            catapult = 0.75 * -127.0;
         }
     }
 }
