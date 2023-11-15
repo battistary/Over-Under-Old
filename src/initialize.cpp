@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/adi.h"
 #include "pros/motors.h"
 
 void update_screen() {
@@ -27,10 +28,12 @@ void initialize() {
     driveRightBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 
     lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    catapult.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    puncher.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
     rotationSensor.reset();
 	
+    c::adi_pin_mode(LIMIT_SWITCH, INPUT);
+
     //lcd::initialize();                    // Display the default PROS screen on the Brain screen
     //pros::Task screenTask(update_screen); // Create a task to print the position to the screen
 }

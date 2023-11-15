@@ -20,7 +20,7 @@ void opcontrol() {
         driveLeft.move(left);
         driveRight.move(right);
         
-        setCata();
+        setPuncher();
         setIntake();
         setLift();
         setWings();

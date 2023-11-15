@@ -77,11 +77,13 @@ void opcontrol(void);
 #include "autoSelect/selection.h"
 #include "subsystemHeaders/globals.hpp"
 #include "subsystemHeaders/drive.hpp"
-#include "subsystemHeaders/catapult.hpp"
+#include "subsystemHeaders/puncher.hpp"
 #include "subsystemHeaders/intake.hpp"
 #include "subsystemHeaders/wings.hpp"
 #include "subsystemHeaders/lift.hpp"
 //#include <iostream>
 #endif
+
+#define LIMIT_SWITCH 'B'
 
 #endif  // _PROS_MAIN_H_

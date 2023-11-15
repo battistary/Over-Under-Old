@@ -16,7 +16,7 @@ extern pros::Motor driveRightFront;
 extern pros::Motor driveRightBack;
 extern pros::Motor driveLilMiddleRight;
 
-extern pros::Motor catapult;
+extern pros::Motor puncher;
 extern pros::Motor intake;
 extern pros::Motor lift;
 

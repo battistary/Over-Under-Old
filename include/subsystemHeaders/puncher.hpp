@@ -1,3 +1,3 @@
 #include "main.h"
 
-void setCata();
+void setPuncher();

@@ -16,6 +16,7 @@ void setWings() {
             pros::delay(500);
         }
     }
+
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
         if ( wingRight == false ) {
             wingPistonRight.set_value(1);
@@ -28,18 +29,20 @@ void setWings() {
             pros::delay(500);
         }
     }
+
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
             wingPistonRight.set_value(1);
             wingPistonLeft.set_value(1);
             wingRight = true;
             wingLeft = true;
             pros::delay(500);
-        }
+    }
+
     if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
             wingPistonRight.set_value(0);
             wingPistonLeft.set_value(0);
             wingRight = false;
             wingLeft = false;
             pros::delay(500);
-        }
+    }
 }
