@@ -80,6 +80,7 @@ void opcontrol(void);
 #include "subsystemHeaders/catapult.hpp"
 #include "subsystemHeaders/intake.hpp"
 #include "subsystemHeaders/wings.hpp"
+#include "subsystemHeaders/lift.hpp"
 //#include <iostream>
 #endif
 

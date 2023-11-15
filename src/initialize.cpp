@@ -25,6 +25,11 @@ void initialize() {
     driveLeftBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
     driveRightFront.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
     driveRightBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+
+    lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    catapult.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+    rotationSensor.reset();
 	
     //lcd::initialize();                    // Display the default PROS screen on the Brain screen
     //pros::Task screenTask(update_screen); // Create a task to print the position to the screen

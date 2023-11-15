@@ -1,13 +1,18 @@
 #include "main.h"
 
 void setCata() {
-    if (controller.get_digital(E_CONTROLLER_DIGITAL_A)) {
-        catapult = 0.75 * 127.0;
-    }
-    else if (controller.get_digital(E_CONTROLLER_DIGITAL_B)) {
-        catapult = 0.75 * -127.0;
-    }
-    else {
+    // Catapult rotation sensor positions:
+    // 335° -> Down
+    // 265° -> Up
+    // 265-70° -> Slip gear
+
+    if ( controller.get_digital(E_CONTROLLER_DIGITAL_A) ) {
+        while ( controller.get_digital(E_CONTROLLER_DIGITAL_A) ) {
+            catapult = 127;
+        }
+        while ( rotationSensor.get_angle() < 33500 ) {
+            catapult = 127;
+        }
         catapult = 0;
     }
 }

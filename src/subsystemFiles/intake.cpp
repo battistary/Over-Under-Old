@@ -1,7 +1,5 @@
 #include "main.h"
 
-bool raise_intake = false;
-
 void setIntake() {
     if (controller.get_digital(E_CONTROLLER_DIGITAL_R1)) {
         intake = 127.0;

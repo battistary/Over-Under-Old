@@ -1,6 +1,4 @@
 #include "main.h"
-#include "pros/motors.h"
-#include "pros/motors.hpp"
 
 // Variables
 bool show_logo = true;
@@ -19,7 +17,7 @@ pros::Motor driveLilMiddleRight(18, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTO
 
 pros::Motor catapult(14, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
 pros::Motor intake(15, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor lift(16, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
+pros::Motor lift(16, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_COUNTS);
 
 // Motor Groups
 pros::Motor_Group driveLeft({driveLeftFront, driveLeftBack, driveLilMiddleLeft});
@@ -34,7 +32,7 @@ pros::ADIDigitalOut wingPistonRight('H', false);
 pros::Imu imu(17);
 
 // Rotation Sensor
-//pros::Rotation rotation_sensor(20);
+pros::Rotation rotationSensor(10);
 
 // Drivetrain struct
 lemlib::Drivetrain_t drivetrain {

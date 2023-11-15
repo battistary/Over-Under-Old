@@ -45,29 +45,7 @@ void autonomous() {
     }
 
     else if ( selector::auton == 2 || selector::auton == -2 ) {                  // Opponent Side
-        chassis.setPose(-38, -55, -45);
-        chassis.moveTo(-63, -26, 2000); // Tested working
-
-        /* Experimental */
-
-        lemlib::Pose pose = chassis.getPose();
-        chassis.turnTo(-1 * pose.x, -32, 2500);
-        chassis.moveTo(-1 * pose.x, -32, 2000);
-//
-        //chassis.turnTo(-55, -53, 2000);
-        //chassis.moveTo(-55, -53, 2000);
-        //wingPistonLeft.set_value(1);
-//
-        //chassis.turnTo(0, -53, 2000);
-        //wingPistonLeft.set_value(0);
-//
-        //chassis.turnTo(-36, -53, 2000);
-        //chassis.moveTo(-36, -53, 2000);
-//
-        //chassis.turnTo(0, -60, 2000);
-        //chassis.moveTo(0, -60, 2000);
-//
-        //wingPistonRight.set_value(1);
+        chassis.setPose(0, 0, 0);
     }
 
     else if ( selector::auton == 3 || selector::auton == -3 || selector::auton == 0 ) { // Skills auton

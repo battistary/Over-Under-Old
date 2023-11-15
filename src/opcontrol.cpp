@@ -21,6 +21,8 @@ void opcontrol() {
         driveRight.move(right);
         
         setCata();
+        setIntake();
+        setLift();
         setWings();
         pros::delay(10);
     }

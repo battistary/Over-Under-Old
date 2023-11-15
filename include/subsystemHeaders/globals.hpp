@@ -33,7 +33,7 @@ extern pros::ADIDigitalOut wingPistonRight;
 extern pros::Imu imu;
 
 // Rotation Sensor
-extern pros::Rotation rotation;
+extern pros::Rotation rotationSensor;
 
 // LemLib chassis object
 extern lemlib::Chassis chassis;
