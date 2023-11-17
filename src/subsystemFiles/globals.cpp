@@ -17,7 +17,7 @@ pros::Motor driveRightBack(2, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCO
 pros::Motor driveLilMiddleRight(5, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_COUNTS);
 
 pros::Motor puncher(8, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_COUNTS);
-pros::Motor lift(9, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor lift(9, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_ROTATIONS);
 pros::Motor intake(10, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_COUNTS);
 
 // Motor Groups

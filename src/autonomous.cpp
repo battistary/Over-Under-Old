@@ -24,84 +24,109 @@ void autonomous() {
         chassis.setPose(38, -55, 45);
         chassis.moveTo(54, -41, 1000);
         chassis.turnTo(54, -24, 1000);
-        chassis.moveTo(54, -22, 1000);
+        chassis.moveTo(54, -20, 1000);
 
         // 2nd triball
         chassis.moveTo(54, -38, 1000);
-        chassis.turnTo(7, -25, 1000);
+        chassis.turnTo(5, -24, 1000);
         chassis.moveTo(21, -29, 1000);
         intake.move(127);
         chassis.moveTo(10, -25, 1000);
-        pros::delay(1000);
+        pros::delay(1500);
         intake.move(0);
         chassis.turnTo(10, -12, 1000);
         chassis.moveTo(10, -12, 1000);
         chassis.turnTo(47, -12, 1000);
-        intake.move(-20);
+        wingPistonLeft.set_value(1);
+        intake.move(-127);
         chassis.moveTo(47, -12, 1000);
         intake.move(0);
+        wingPistonLeft.set_value(0);
 
         // 3rd triball
-        chassis.moveTo(23, -12, 1000);
-        chassis.turnTo(24, -5, 1000);
-        intake.move(127);
-        chassis.moveTo(24, -5, 1000);
-        pros::delay(1000);
-        intake.move(0);
-        chassis.moveTo(24, -12, 1000);
-        chassis.turnTo(47, -12, 1000);
-        chassis.moveTo(47, -12, 1000);
+        //chassis.moveTo(35, -12, 1000);
+        //chassis.turnTo(24, 0, 1000);
+        //intake.move(127);
+        //chassis.moveTo(29, -4, 1000);
+        //pros::delay(1000);
+        //intake.move(0);
+        //chassis.moveTo(35, -12, 1000);
+        //chassis.turnTo(47, -12, 1000);
+        //intake.move(-127);
+        //chassis.moveTo(47, -12, 1000);
+        //intake.move(0);
 
         // Contact colored bar
         chassis.moveTo(33, -12, 1000);
         chassis.turnTo(33, -56, 1000);
-        chassis.moveTo(33, -56, 1000);
+        chassis.moveTo(33, -56, 2000);
+        lift.move_relative(4, 100);
         chassis.turnTo(60, -56, 1000);
-        chassis.moveTo(17, -56, 1000);
-        lift.move_relative(620, 100);
-        intake.move(127);
+        //chassis.moveTo(17, -56, 1000);
         chassis.moveTo(10, -56, 1000, 75);
     }
 
     else if ( selector::auton == 2 || selector::auton == -2 ) {                  // Opponent Side
         // 1st triball
-        chassis.setPose(-36, -58, -45);
-        chassis.moveTo(-52, -39, 1000);
+        chassis.setPose(-36, -58, 90);
         intake.move(-127);
-        pros::delay(500);
-        intake.move(0);
-        
+
         // 2nd triball
-        chassis.turnTo(-30, -36, 1000);
-        chassis.moveTo(-30, -36, 1000);
-        chassis.turnTo(-25, -8, 1000);
-        chassis.moveTo(-27, -17, 1000);
-        intake.move(127);
-        chassis.moveTo(-25, -7, 1000);
-        pros::delay(500);
-        intake.move(0);
-        chassis.moveTo(-36, -58, 4000);
-        chassis.turnTo(0, -58, 1000);
-        intake.move(-127);
-        pros::delay(500);
-        intake.move(0);
-
-        // Clear match load triball
-        chassis.turnTo(-19, -69, 1000);
-        chassis.moveTo(-51, -51, 1000);
+        chassis.turnTo(-22, -69, 1500);
+        chassis.moveTo(-55, -45, 1500);
+        chassis.turnTo(-43, -63, 1500);
         wingPistonRight.set_value(1);
-        chassis.moveTo(-44, -63, 1000);
+        chassis.moveTo(-43, -63, 1500);
         wingPistonRight.set_value(0);
-        chassis.turnTo(-1, -62, 1000);
-        chassis.moveTo(-12, -60, 1000);
 
-        // Elevation
-        // Do l8r
+        // 3rd triball
+        chassis.turnTo(-25, -7, 1500);
+        chassis.moveTo(-24, -13, 1500);
+        intake.move(127);
+        chassis.moveTo(-24, -6, 1500);
+        pros::delay(1000);
+        intake.move(0);
+        chassis.moveTo(-39, -56, 1500);
+        chassis.turnTo(-9, -56, 1500);
+        intake.move(-127);
+        pros::delay(1000);
+        intake.move(0);
+
+        // Contact colored bar
+        chassis.turnTo(-52, -56, 1500);
+        lift.move_relative(4, 100);
+        chassis.moveTo(-9, -56, 1500);
     }
 
     else if ( selector::auton == 3 || selector::auton == -3 || selector::auton == 0 ) { // Skills auton
-        while ( true ) {
-            puncher = 0.75 * -127.0;
-        }
+        // Match loads
+        chassis.setPose(-42, -58, 135);
+        chassis.moveTo(-57, -46, 1500);
+        chassis.turnTo(46, -7, 1500);
+        wingPistonRight.set_value(1);
+        puncher.move(127);
+        pros::delay(45000);
+        puncher.move(0);
+
+        // Push bot / plowing
+        chassis.turnTo(-31, -58, 1500);
+        chassis.moveTo(-31, -58, 1500);
+        chassis.moveTo(37, -58, 2000);
+        wingPistonLeft.set_value(1);
+        wingPistonRight.set_value(1);
+        chassis.turnTo(59, -28, 1500);
+        chassis.moveTo(59, -28, 1500);
+        chassis.moveTo(54, -40, 1500);
+        chassis.moveTo(59, -28, 1500);
+        
+        // Elevation
+        chassis.turnTo(36, -57, 1500);
+        chassis.moveTo(36, -57, 1500);
+        chassis.turnTo(6, -57, 1500);
+        chassis.moveTo(6, -57, 1500);
+        lift.move_relative(4, 100);
+        chassis.moveTo(-2, -57, 1000);
+        liftPiston.set_value(1);
+        lift.move_relative(-2, 100);
     }
 }
