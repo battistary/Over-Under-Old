@@ -22,6 +22,9 @@ void autonomous() {
     if ( selector::auton == 1 || selector::auton == -1 ) {                       // Alliance Side
         // 1st triball
         chassis.setPose(38, -55, 45);
+        lift.move_relative(2, 100);
+        pros::delay(500);
+        lift.move_relative(-2, 100);
         chassis.moveTo(54, -41, 1000);
         chassis.turnTo(54, -24, 1000);
         chassis.moveTo(54, -20, 1000);
@@ -37,11 +40,11 @@ void autonomous() {
         chassis.turnTo(10, -12, 1000);
         chassis.moveTo(10, -12, 1000);
         chassis.turnTo(47, -12, 1000);
-        wingPistonLeft.set_value(1);
+        wings.set_value(1);
         intake.move(-127);
         chassis.moveTo(47, -12, 1000);
         intake.move(0);
-        wingPistonLeft.set_value(0);
+        wings.set_value(0);
 
         // 3rd triball
         //chassis.moveTo(35, -12, 1000);
@@ -63,21 +66,24 @@ void autonomous() {
         lift.move_relative(4, 100);
         chassis.turnTo(60, -56, 1000);
         //chassis.moveTo(17, -56, 1000);
-        chassis.moveTo(10, -56, 1000, 75);
+        chassis.moveTo(7, -56, 1000, 75);
     }
 
     else if ( selector::auton == 2 || selector::auton == -2 ) {                  // Opponent Side
         // 1st triball
         chassis.setPose(-36, -58, 90);
+        lift.move_relative(2, 100);
+        pros::delay(500);
+        lift.move_relative(-2, 100);
         intake.move(-127);
 
         // 2nd triball
         chassis.turnTo(-22, -69, 1500);
         chassis.moveTo(-55, -45, 1500);
         chassis.turnTo(-43, -63, 1500);
-        wingPistonRight.set_value(1);
+        wings.set_value(1);
         chassis.moveTo(-43, -63, 1500);
-        wingPistonRight.set_value(0);
+        wings.set_value(0);
 
         // 3rd triball
         chassis.turnTo(-25, -7, 1500);
@@ -101,9 +107,12 @@ void autonomous() {
     else if ( selector::auton == 3 || selector::auton == -3 || selector::auton == 0 ) { // Skills auton
         // Match loads
         chassis.setPose(-42, -58, 135);
+        lift.move_relative(2, 100);
+        pros::delay(500);
+        lift.move_relative(-2, 100);
         chassis.moveTo(-57, -46, 1500);
         chassis.turnTo(46, -7, 1500);
-        wingPistonRight.set_value(1);
+        wings.set_value(1);
         puncher.move(127);
         pros::delay(45000);
         puncher.move(0);
@@ -112,8 +121,8 @@ void autonomous() {
         chassis.turnTo(-31, -58, 1500);
         chassis.moveTo(-31, -58, 1500);
         chassis.moveTo(37, -58, 2000);
-        wingPistonLeft.set_value(1);
-        wingPistonRight.set_value(1);
+        wings.set_value(1);
+        wings.set_value(1);
         chassis.turnTo(59, -28, 1500);
         chassis.moveTo(59, -28, 1500);
         chassis.moveTo(54, -40, 1500);
