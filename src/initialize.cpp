@@ -1,6 +1,4 @@
 #include "main.h"
-#include "pros/adi.h"
-#include "pros/motors.h"
 
 void update_screen() {
     while (true) {

@@ -1,7 +1,4 @@
-#include "lemlib/pose.hpp"
 #include "main.h"
-#include "pros/llemu.hpp"
-#include "pros/rtos.hpp"
 
 void turnMoveTo(float x, float y, int turnTimeout, int moveTimeout) {
     chassis.turnTo(x, y, turnTimeout);

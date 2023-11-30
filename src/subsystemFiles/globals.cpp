@@ -1,5 +1,4 @@
 #include "main.h"
-#include "pros/adi.hpp"
 
 // Variables
 bool show_logo = true;

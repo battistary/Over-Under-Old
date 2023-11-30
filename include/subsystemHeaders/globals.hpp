@@ -1,5 +1,4 @@
 #include "main.h"
-#include "pros/motors.hpp"
 
 // Variables
 extern bool show_logo;
