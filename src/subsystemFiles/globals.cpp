@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/adi.hpp"
 
 // Variables
 bool show_logo = true;
@@ -25,11 +26,11 @@ pros::Motor_Group driveRight({driveRightFront, driveRightBack, driveLilMiddleRig
 
 // ADI Digital Outputs
 // Limit Switch in 'A'
-pros::ADIDigitalOut liftPiston('B', false);
-pros::ADIDigitalOut wings('C', false);
-
+pros::ADIDigitalOut wingRight('B', false);
+pros::ADIDigitalOut wingLeft('C', false);
+pros::ADIDigitalOut liftRachet('H', false);
 // Inertial Sensor
-pros::Imu imu(12);
+pros::Imu imu(7);
 
 // Rotation Sensor
 pros::Rotation rotationSensor(11);

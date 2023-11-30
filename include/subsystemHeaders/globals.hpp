@@ -25,8 +25,9 @@ extern pros::Motor_Group driveLeft;
 extern pros::Motor_Group driveRight;
 
 // Pneumatic Pistons
-extern pros::ADIDigitalOut liftPiston;
-extern pros::ADIDigitalOut wings;
+extern pros::ADIDigitalOut wingRight;
+extern pros::ADIDigitalOut wingLeft;
+extern pros::ADIDigitalOut liftRachet;
 
 // Inertial Sensor
 extern pros::Imu imu;
