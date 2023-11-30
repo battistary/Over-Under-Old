@@ -151,7 +151,7 @@ void autonomous() {
         chassis.moveTo(6, -57, 1500);
         lift.move_relative(4.2, 100);
         chassis.moveTo(-2, -57, 1000);
-        liftPiston.set_value(1);
+        liftRachet.set_value(1);
         lift.move_relative(-2, 100);
     }
 }
