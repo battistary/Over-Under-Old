@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/motors.h"
 
 void update_screen() {
     while (true) {
@@ -24,6 +25,8 @@ void initialize() {
     driveLeftBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
     driveRightFront.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
     driveRightBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    driveLilMiddleRight.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    driveLilMiddleLeft.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 
     lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     puncher.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

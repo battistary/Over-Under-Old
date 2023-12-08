@@ -14,16 +14,19 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+    pros::Task endgameRumble {[=] {
+        pros::delay(88000);
+        controller.rumble(". .");
+    }};
+    pros::Task punch(setPuncher);
+    pros::Task intake(setIntake);
+    pros::Task lift(setLift);
+    pros::Task wing(setWings);
     while ( true ) {
         double left = controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) + controller.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
         double right = controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) - controller.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
         driveLeft.move(left);
         driveRight.move(right);
-        
-        setPuncher();
-        setIntake();
-        setLift();
-        setWings();
         pros::delay(10);
     }
 }
