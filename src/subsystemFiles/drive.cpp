@@ -1,5 +1,10 @@
 #include "main.h"
 
+// drive.cpp backup notes
+// 1 motor turn = 10 inches
+// Turn at 38/127 voltage
+// Turns are relative, not absolute
+
 // Helper functions
 void setDrive(int left, int right) {
     driveLeft = left;

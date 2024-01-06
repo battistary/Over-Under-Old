@@ -1,6 +1,4 @@
-#include "autoSelect/selection.h"
 #include "main.h"
-#include "pros/motors.h"
 
 void turnMoveTo(float x, float y, int turnTimeout, int moveTimeout) {
     chassis.turnTo(x, y, turnTimeout);
@@ -19,120 +17,97 @@ void turnMoveTo(float x, float y, int turnTimeout, int moveTimeout) {
  * from where it left off.
  */
 void autonomous() {
-        // drive.cpp backup notes
-        // 1 motor turn = 10 inches
-        // Turn at 38/127 voltage
-        // Turns are relative, not absolute
-    if ( selector::auton == 1 || selector::auton == -1 ) {                       // Alliance Side
+    if ( selector::auton == 1 || selector::auton == -1 ) {
+        /*-----------------*/
+        /*  Alliance Side  */
+        /*-----------------*/
+
         // 1st triball
-        chassis.setPose(38, -55, 45);
-        lift.move_relative(2, 100);
-        pros::delay(500);
-        lift.move_relative(-2, 100);
+        chassis.setPose(38, -55, 45);       // Start
         chassis.moveTo(54, -41, 1000);
-        chassis.turnTo(54, -24, 500);
+        chassis.turnTo(54, -24, 300);
         chassis.moveTo(54, -20, 1000);
 
         // 2nd triball
+        lift.move_relative(2, 100);
         chassis.moveTo(54, -38, 1000);
+        lift.move_relative(-2, 100);
         intake.move(127);
-        turnMoveTo(7, -27, 500, 1400);
-        pros::delay(300);
+        turnMoveTo(9, -22, 300, 1400);
+        chassis.turnTo(9, -7, 300);
+        chassis.moveTo(9, -7, 1000);
+        chassis.turnTo(47, -7, 600);
         intake.move(0);
-        chassis.turnTo(7, -12, 500);
-        chassis.moveTo(7, -12, 1000);
-        chassis.turnTo(47, -12, 600);
         wingLeft.set_value(1);
         intake.move(-127);
-        chassis.moveTo(47, -12, 1000);
+        chassis.moveTo(47, -7, 1000);
         intake.move(0);
         wingLeft.set_value(0);
 
-        // 3rd triball
-        //chassis.moveTo(35, -12, 1000);
-        //chassis.turnTo(24, 0, 1000);
-        //intake.move(127);
-        //chassis.moveTo(29, -4, 1000);
-        //pros::delay(1000);
-        //intake.move(0);
-        //chassis.moveTo(35, -12, 1000);
-        //chassis.turnTo(47, -12, 1000);
-        //intake.move(-127);
-        //chassis.moveTo(47, -12, 1000);
-        //intake.move(0);
-
         // Contact colored bar
-        chassis.moveTo(33, -12, 1000);
-        chassis.turnTo(33, -56, 1000);
-        chassis.moveTo(33, -56, 2000);
-        chassis.turnTo(0, -56, 1000);
-        /*
-        lift.move_relative(4.2, 100);
-        chassis.turnTo(60, -56, 600);
-        //chassis.moveTo(17, -56, 1000);
-        chassis.moveTo(7, -56, 1000, 100);
-        */
+        chassis.moveTo(35, -10, 1000);
+        chassis.turnTo(35, 53, 600);
+        chassis.moveTo(35, -53, 2500);
+        
+        lift = 127;                         // Raise lift
+        chassis.turnTo(60, -53, 600);       // Turn back towards colored bar
+        chassis.moveTo(7, -53, 1000, 100);  // Contact colored bar
     }
 
-    else if ( selector::auton == 2 || selector::auton == -2 ) {                  // Opponent Side
-        // 1st triball
-        chassis.setPose(-36, -58, 90);
-        lift.move_relative(2, 100);
-        pros::delay(500);
-        lift.move_relative(-2, 100);
-        intake.move(-127);
-        pros::delay(500);
-        intake.move(0);
+    else if ( selector::auton == 2 || selector::auton == -2 ) {
+        /*-----------------*/
+        /*  Opponent Side  */
+        /*-----------------*/
 
-        // 2nd triball
-        chassis.turnTo(-22, -69, 1500);
-        chassis.moveTo(-55, -45, 1500);
-        chassis.turnTo(-43, -63, 1500);
-        wingRight.set_value(1);
-        chassis.moveTo(-52, -54, 500);
-        chassis.turnTo(-23, -59, 500);
-        wingRight.set_value(0);
-        pros::delay(250);
-        wingRight.set_value(1);
-        pros::delay(250);
-        wingRight.set_value(0);
-        chassis.moveTo(-35, -59, 750);
-        chassis.moveTo(-23, -59, 750);
+        chassis.setPose(-49, -58, 315);         // Start
+        lift.move_relative(2, 100);             // Raise lift to drop intake
+        chassis.moveTo(-54, -53, 1000);         // Move forward
+        wingLeft.set_value(1);                  // Extend wing
+        lift.move_relative(-2, 100);            // Lower lift
+        chassis.moveTo(-49, -58, 500);          // Move back
+        chassis.turnTo(-72, -48, 500);          // Turn
+        wingLeft.set_value(0);                  // Retract wing to knock out triball
+        pros::delay(500);                       // Delay to ensure wing retracts fully
 
-        // 3rd triball
-        /* chassis.turnTo(-25, -7, 1500);
-        chassis.moveTo(-24, -13, 1500);
-        intake.move(127);
-        chassis.moveTo(-24, -6, 1500);
-        pros::delay(1000);
-        intake.move(0);
-        chassis.moveTo(-39, -56, 1500);
-        chassis.turnTo(-9, -56, 1500);
-        intake.move(-127);
-        pros::delay(1000);
-        intake.move(0); */
+        chassis.moveTo(-43, -59, 500);          // Staggered move away from barrier
+        chassis.turnTo(-52, -58, 500);          // ^
+        chassis.moveTo(-40, -58, 500);          // ^
 
-        // Contact colored bar
-        chassis.turnTo(-52, -59, 1500);
-        lift.move_relative(4.2, 100);
-        pros::delay(2000);
-        lift = 30;
-        chassis.moveTo(-5, -59, 1500);
+        intake.move(127);                       // Spin intake
+        chassis.turnTo(-31, -15, 1000);         // Turn towards middle triball
+        chassis.moveTo(-31, -15, 3500, 100);    // Drive to middle triball
+        pros::delay(500);                       // Delay to ensure intake
+        intake.move(60);                        // Intake less to combat motor burn out
+
+        chassis.moveTo(-40, -62, 3500, 100);    // Move back from middle
+        chassis.turnTo(0, -62, 750);            // Turn
+        intake.move(-127);                      // Shoot triball across
+        pros::delay(500);                       // Delay
+        intake.move(0);                         // Stop intake
+        lift = 127;                             // Raise lift
+        chassis.turnTo(-72, -62, 750);          // Turn 180 degrees
+        chassis.moveTo(-7, -62, 1500);          // Contact colored bar
     }
 
-    else if ( selector::auton == 3 || selector::auton == 0 ) {  // New Pure Pursuit Skills Auton
+    else if ( selector::auton == 3 || selector::auton == -3 || selector::auton == 0 ) {
+        /*-----------------*/
+        /*     Skills      */
+        /*-----------------*/
+        
         // Pre loads
-        chassis.setPose(36, 60, 315);
+        chassis.setPose(49, 58, 135);
         lift.move_relative(2, 100);
-        pros::delay(500);
+        chassis.moveTo(54, -41, 1000);
+        chassis.turnTo(54, -24, 300);
         lift.move_relative(-2, 100);
+        chassis.moveTo(54, -20, 1000);
 
-        // Path 1
-        chassis.moveTo(60, 27, 1000, true);
-
-        // Path 2
-        turnMoveTo(59, 48, 500, 1000);
-        chassis.turnTo(-44, 16, 1000);
+        // Move to match load zone
+        chassis.turnTo(59, 50, 500, true);
+        chassis.moveTo(59, 50, 1000);
+        chassis.turnTo(-44, 0, 1000);
+        driveLeft = -30;
+        driveRight = -30;
 
         // Set drivetrain brake mode to hold
         driveLeftFront.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -144,8 +119,10 @@ void autonomous() {
 
         // Wham bam punch kick kapow wowie zowie
         puncher = 127;
-        pros::delay(30000);
+        pros::delay(39000); //5 secs for testing
         puncher = 0;
+        driveLeft = 0;
+        driveRight = 0;
 
         // Set drivetrain brake mode to brake
         driveLeftFront.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
@@ -155,99 +132,41 @@ void autonomous() {
         driveLilMiddleRight.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
         driveLilMiddleLeft.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 
-        // Path 3
-        turnMoveTo(35, 60, 500, 1000);
-        turnMoveTo(-30, 57, 500, 2000);
+        // Drive across
+        turnMoveTo(35, 58, 500, 1000);
+        turnMoveTo(-41, 58, 500, 2000);
+
+        // 1st ram
+        turnMoveTo(-60, 26, 500, 1000);
+        
+        // 2nd ram
+        chassis.moveTo(-60, 39, 1000);
+        turnMoveTo(-33, 39, 500, 1000);
+        turnMoveTo(-19, 18, 500, 1000);
+        turnMoveTo(-19, 0, 500, 1000);
         wingLeft.set_value(1);
         wingRight.set_value(1);
-        intake.move(127);
+        turnMoveTo(-44, 0, 500, 1000);
+        pros::delay(200);
 
-        // 1st pushbot ram
+        // 3rd ram
+        chassis.moveTo(-19, 0, 1000);
+        driveLeft = 127;
+        driveRight = 127;
+        pros::delay(3000);
+        driveLeft = 0;
+        driveRight = 0;
+
+        /*// Hang
         wingRight.set_value(0);
-        turnMoveTo(-59, 39, 500, 1000);
-        intake.move(-127);
-        chassis.moveTo(-59, 27, 1000);
-        intake.move(127);
-        pros::delay(500);
-        intake.move(0);
-        chassis.moveTo(-59, 39, 1000, true);
-        intake.move(-127);
-        turnMoveTo(-30, 39, 500, 1000);
-        chassis.moveTo(-30, 8, 1000);
-        turnMoveTo(-44, 8, 500, 1000);
-
-        // 2nd pushbot ram
-        chassis.moveTo(-30, 8, 500);
-        chassis.turnTo(-9, 21, 250);
-        turnMoveTo(-18, 0, 500, 1000);
-        chassis.turnTo(-13, -8, 250);
-        turnMoveTo(-30, -10, 500, 1000);
-        chassis.moveTo(-44, 10, 1000);
-
-        // 3rd pushbot ram
         wingLeft.set_value(0);
-        wingRight.set_value(0);
-        chassis.moveTo(-33, -10, 1000);
-        
-
-
-        
-        pros::delay(500);
-        intake.move(127);
-        chassis.follow("5fw.txt", 5000, 10);
-        intake.move(-127);
-        pros::delay(500);
-        intake.move(127);
-        chassis.follow("6fw.txt", 5000, 10);
-        intake.move(-127);
-        pros::delay(500);
-        intake.move(0);
-
-        // Contact elevation bar
-        wingLeft.set_value(0);
-        wingRight.set_value(0);
-        chassis.follow("7fw.txt", 5000, 10);
-        lift.move_relative(4, 1000);
-        chassis.moveTo(0, 62, 1000);
+        turnMoveTo(-39, -59, 500, 1000);
+        lift.move_relative(4, 100); //edit the turn. idk what fully up is
+        pros::delay(1700);
+        lift = 127; //This keeps it up?
         liftRachet.set_value(1);
-        lift.move_relative(-3, 100);
-    }
-
-    else if ( selector::auton == -3 ) { // Puncher Skills
-        // Match loads
-        chassis.setPose(-42, -58, 135);
-        lift.move_relative(2, 100);
-        pros::delay(500);
-        lift.move_relative(-2, 100);
-        chassis.moveTo(-57, -46, 1500);
-        chassis.turnTo(46, -7, 1500);
-        wingRight.set_value(1);
-        wingLeft.set_value(1);
-        puncher.move(127);
-        pros::delay(45000);
-        puncher.move(0);
-        wingRight.set_value(0);
-        wingLeft.set_value(0);
-
-        // Push bot / plowing
-        chassis.turnTo(-31, -58, 1500);
-        chassis.moveTo(-31, -58, 1500);
-        chassis.moveTo(37, -58, 2000);
-        wingRight.set_value(1);
-        wingLeft.set_value(1);
-        chassis.turnTo(59, -28, 1500);
-        chassis.moveTo(59, -28, 1500);
-        chassis.moveTo(54, -40, 1500);
-        chassis.moveTo(59, -28, 1500);
-        
-        // Elevation
-        chassis.turnTo(36, -57, 1500);
-        chassis.moveTo(36, -57, 1500);
-        chassis.turnTo(6, -57, 1500);
-        chassis.moveTo(6, -57, 1500);
-        lift.move_relative(4.2, 100);
-        chassis.moveTo(-2, -57, 1000);
-        liftRachet.set_value(1);
-        lift.move_relative(-2, 100);
+        chassis.moveTo(1, -58, 1000);
+        lift = 0
+        lift.move_relative(-2, 100);8*/
     }
 }

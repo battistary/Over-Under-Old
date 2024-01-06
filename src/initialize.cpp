@@ -1,5 +1,4 @@
 #include "main.h"
-#include "pros/motors.h"
 
 void update_screen() {
     while (true) {
@@ -33,10 +32,10 @@ void initialize() {
 
     rotationSensor.reset();
 	
-    c::adi_pin_mode(LIMIT_SWITCH, INPUT);
+    pros::c::adi_pin_mode(LIMIT_SWITCH, INPUT);
 
-    //lcd::initialize();                    // Display the default PROS screen on the Brain screen
-    //pros::Task screenTask(update_screen); // Create a task to print the position to the screen
+    pros::lcd::initialize();                    // Display the default PROS screen on the Brain screen
+    pros::Task screenTask(update_screen); // Create a task to print the position to the screen
 }
 
 /**

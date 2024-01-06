@@ -1,5 +1,4 @@
 #include "main.h"
-#include "pros/misc.h"
 
 // -757 first step
 // -630 second step
@@ -10,10 +9,10 @@ bool hold = false;
 
 void setLift() {
     while ( true ) {
-        if ( controller.get_digital(E_CONTROLLER_DIGITAL_L1) ) {
+        if ( controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1) ) {
             lift = 127.0;
         }
-        else if ( c::adi_digital_read(LIMIT_SWITCH) != HIGH && controller.get_digital(E_CONTROLLER_DIGITAL_L2) ) {
+        else if ( pros::c::adi_digital_read(LIMIT_SWITCH) != HIGH && controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2) ) {
             lift = -127.0;
         }
         else {

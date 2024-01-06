@@ -51,7 +51,7 @@
  * concurrently! The okapi namespace will export all symbols inside the pros
  * namespace.
  */
-using namespace pros;
+//using namespace pros;
 //using namespace pros::literals;
 //using namespace okapi;
 
@@ -68,9 +68,7 @@ void initialize(void);
 void disabled(void);
 void competition_initialize(void);
 void opcontrol(void);
-#ifdef __cplusplus
 }
-#endif
 
 #ifdef __cplusplus
 #include "gif-pros/gifclass.hpp"

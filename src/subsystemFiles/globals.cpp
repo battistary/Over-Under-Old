@@ -5,7 +5,7 @@ bool show_logo = true;
 Gif gif("/usd/logo_stretched.gif", lv_scr_act());
 
 // Controllers
-pros::Controller controller(E_CONTROLLER_MASTER);
+pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // Motors
 pros::Motor driveLeftFront(4, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_COUNTS);
@@ -28,6 +28,7 @@ pros::Motor_Group driveRight({driveRightFront, driveRightBack, driveLilMiddleRig
 pros::ADIDigitalOut wingRight('B', false);
 pros::ADIDigitalOut wingLeft('C', false);
 pros::ADIDigitalOut liftRachet('H', false);
+
 // Inertial Sensor
 pros::Imu imu(7);
 
@@ -48,7 +49,7 @@ lemlib::OdomSensors_t sensors {
     nullptr, // N/A - vertical tracking wheel 1
     nullptr, // N/A - vertical tracking wheel 2
     nullptr, // N/A - horizontal tracking wheel 1
-    nullptr, // N/A - hortizontal tracking wheel 2 - wouldn't help much anyway
+    nullptr, // N/A - hortizontal tracking wheel 2
     &imu     // inertial sensor
 };
 

@@ -1,5 +1,3 @@
-#include "main.h"
-
 // Helper functions
 void setDrive(int left, int right);
 
