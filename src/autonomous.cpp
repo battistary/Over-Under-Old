@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/rtos.hpp"
 
 void turnMoveTo(float x, float y, int turnTimeout, int moveTimeout) {
     chassis.turnTo(x, y, turnTimeout);
@@ -22,14 +23,13 @@ void autonomous() {
         /*  Alliance Side  */
         /*-----------------*/
 
-        // 1st triball
         chassis.setPose(38, -55, 45);       // Start
-        chassis.moveTo(54, -41, 1000);
-        chassis.turnTo(54, -24, 300);
-        chassis.moveTo(54, -20, 1000);
+        chassis.moveTo(54, -41, 1000);      // Move diagonally to align with goal
+        chassis.turnTo(54, -24, 300);       // Turn towards goal
+        chassis.moveTo(54, -20, 1000);      // Ram 1st triball into goal
 
         // 2nd triball
-        lift.move_relative(2, 100);
+        lift.move_relative(2, 100);         //
         chassis.moveTo(54, -38, 1000);
         lift.move_relative(-2, 100);
         intake.move(127);
@@ -49,9 +49,9 @@ void autonomous() {
         chassis.turnTo(35, 53, 600);
         chassis.moveTo(35, -53, 2500);
         
-        lift = 127;                         // Raise lift
-        chassis.turnTo(60, -53, 600);       // Turn back towards colored bar
-        chassis.moveTo(7, -53, 1000, 100);  // Contact colored bar
+        lift = 127;                             // Raise lift
+        chassis.turnTo(60, -53, 600);           // Turn back towards colored bar
+        chassis.moveTo(7, -53, 1000, 100);      // Contact colored bar
     }
 
     else if ( selector::auton == 2 || selector::auton == -2 ) {
@@ -86,7 +86,10 @@ void autonomous() {
         intake.move(0);                         // Stop intake
         lift = 127;                             // Raise lift
         chassis.turnTo(-72, -62, 750);          // Turn 180 degrees
-        chassis.moveTo(-7, -62, 1500);          // Contact colored bar
+        //chassis.moveTo(-7, -62, 1500);          // Contact colored bar
+
+        chassis.moveTo(-13, -62, 1000);         // Almost contact colored bar but don't risk it
+        chassis.moveTo(-40, -62, 1000);         // Back up
     }
 
     else if ( selector::auton == 3 || selector::auton == -3 || selector::auton == 0 ) {
@@ -95,19 +98,20 @@ void autonomous() {
         /*-----------------*/
         
         // Pre loads
-        chassis.setPose(49, 58, 135);
-        lift.move_relative(2, 100);
-        chassis.moveTo(54, -41, 1000);
-        chassis.turnTo(54, -24, 300);
-        lift.move_relative(-2, 100);
-        chassis.moveTo(54, -20, 1000);
+        chassis.setPose(49, 58, 135);           // Start
+        chassis.moveTo(60, 47, 500);            // Move diagonally to align with goal
+        chassis.turnTo(60, 31, 300);            // Turn towards goal
+        chassis.moveTo(60, 20, 500);            // Ram 1st triball into goal
+        lift.move_relative(4.2, 100);           // Raise lift
 
-        // Move to match load zone
-        chassis.turnTo(59, 50, 500, true);
-        chassis.moveTo(59, 50, 1000);
-        chassis.turnTo(-44, 0, 1000);
-        driveLeft = -30;
-        driveRight = -30;
+        chassis.moveTo(60, 36, 500);            // Back up away from goal
+        chassis.turnTo(70, 26, 300);            // Turn away from goal
+        chassis.moveTo(50, 46, 400);            // Zig away from goal
+        chassis.turnTo(30, 26, 300);            // Turn towards match load bar
+        chassis.moveTo(54, 50, 300);            // Zag towards match load bar
+        lift = 45;                              // Hold lift up
+        driveLeft = -30;                        // Back up against match load bar
+        driveRight = -30;                       // Back up against match load bar
 
         // Set drivetrain brake mode to hold
         driveLeftFront.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -117,12 +121,25 @@ void autonomous() {
         driveLilMiddleRight.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
         driveLilMiddleLeft.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
-        // Wham bam punch kick kapow wowie zowie
-        puncher = 127;
-        pros::delay(39000); //5 secs for testing
+        puncher = 127;                          // Wham bam punch kick pow boom wowie zowie
+        pros::delay(40000);                     // 40s delay
+        puncher = 0;                            // Stop puncher
+        driveLeft = 0;                          // Stop left drive
+        driveRight = 0;                         // Stop right drive
+        while ( pros::c::adi_digital_read(LIMIT_SWITCH) != HIGH ) { // Drops lift
+            lift = -127;
+        }
+        lift = 0;
+        while ( controller.get_digital(pros::E_CONTROLLER_DIGITAL_A) ) {
+            puncher = 127;
+        }
+        while ( rotationSensor.get_angle() < 30000 ) {
+            puncher = 127;
+        }
+        while ( rotationSensor.get_angle() > 30000 ) {
+            puncher = 127;
+        }
         puncher = 0;
-        driveLeft = 0;
-        driveRight = 0;
 
         // Set drivetrain brake mode to brake
         driveLeftFront.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
@@ -131,6 +148,54 @@ void autonomous() {
         driveRightBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
         driveLilMiddleRight.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
         driveLilMiddleLeft.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+
+        chassis.moveTo(54, 50, 300);            // Move away from bar
+
+        turnMoveTo(24, 60, 500, 750);
+        // 1st ram
+        turnMoveTo(-26, 60, 500, 1000);
+        chassis.moveTo(-59, 41, 500);
+        chassis.turnTo(-59, 20, 300);
+        chassis.moveTo(-59, 20, 750); // ram
+        chassis.moveTo(-59, 38, 500);
+        chassis.turnTo(-39, 38, 300); // away from goal
+        
+        // 2nd ram
+        chassis.moveTo(-39, 38, 1000);
+        turnMoveTo(-21, 26, 500, 1000);
+        turnMoveTo(-19, 18, 500, 1000);
+        turnMoveTo(-19, 0, 500, 1000);
+        wingLeft.set_value(1);
+        wingRight.set_value(1);
+        turnMoveTo(-44, 0, 500, 1000);
+        pros::delay(200);
+
+        // 3rd ram
+        chassis.moveTo(-19, 0, 1000);
+        driveLeft = 127;
+        driveRight = 127;
+        pros::delay(3000);
+        driveLeft = 0;
+        driveRight = 0;
+        ////////////////////////
+        
+        
+        /*
+        lift.move_relative(-2, 100);
+
+        // Move to match load zone
+        chassis.turnTo(59, 50, 500, true);
+        chassis.moveTo(59, 50, 1000);
+        chassis.turnTo(-44, 0, 1000);
+        driveLeft = -30;
+        driveRight = -30;
+
+        // Wham bam punch kick kapow wowie zowie
+        puncher = 127;
+        pros::delay(39000); //5 secs for testing
+        puncher = 0;
+        driveLeft = 0;
+        driveRight = 0;
 
         // Drive across
         turnMoveTo(35, 58, 500, 1000);
@@ -157,7 +222,7 @@ void autonomous() {
         driveLeft = 0;
         driveRight = 0;
 
-        /*// Hang
+        // Hang
         wingRight.set_value(0);
         wingLeft.set_value(0);
         turnMoveTo(-39, -59, 500, 1000);

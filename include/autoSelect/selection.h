@@ -4,7 +4,7 @@
 
 //selector configuration
 #define HUE 240
-#define DEFAULT 1
+#define DEFAULT 2
 #define AUTONS "Alliance Side", "Opponent Side", "Skills"
 
 namespace selector{
