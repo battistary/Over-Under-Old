@@ -1,5 +1,4 @@
 #include "main.h"
-#include "pros/rtos.hpp"
 
 void turnMoveTo(float x, float y, int turnTimeout, int moveTimeout) {
     chassis.turnTo(x, y, turnTimeout);
@@ -18,36 +17,44 @@ void turnMoveTo(float x, float y, int turnTimeout, int moveTimeout) {
  * from where it left off.
  */
 void autonomous() {
+    // Set drivetrain brake mode to brake
+    driveLeftFront.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    driveLeftBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    driveRightFront.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    driveRightBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    driveLilMiddleRight.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    driveLilMiddleLeft.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+
     if ( selector::auton == 1 || selector::auton == -1 ) {
         /*-----------------*/
         /*  Alliance Side  */
         /*-----------------*/
 
-        chassis.setPose(38, -55, 45);       // Start
-        chassis.moveTo(54, -41, 1000);      // Move diagonally to align with goal
-        chassis.turnTo(54, -24, 300);       // Turn towards goal
-        chassis.moveTo(54, -20, 1000);      // Ram 1st triball into goal
-
-        // 2nd triball
-        lift.move_relative(2, 100);         //
-        chassis.moveTo(54, -38, 1000);
-        lift.move_relative(-2, 100);
-        intake.move(127);
-        turnMoveTo(9, -22, 300, 1400);
-        chassis.turnTo(9, -7, 300);
-        chassis.moveTo(9, -7, 1000);
-        chassis.turnTo(47, -7, 600);
-        intake.move(0);
-        wingLeft.set_value(1);
-        intake.move(-127);
-        chassis.moveTo(47, -7, 1000);
-        intake.move(0);
-        wingLeft.set_value(0);
-
-        // Contact colored bar
-        chassis.moveTo(35, -10, 1000);
-        chassis.turnTo(35, 53, 600);
-        chassis.moveTo(35, -53, 2500);
+        chassis.setPose(38, -55, 45);           // Start
+        chassis.moveTo(54, -41, 1000);          // Move diagonally to align with goal
+        chassis.turnTo(54, -24, 300);           // Turn towards goal
+        chassis.moveTo(54, -20, 1000);          // Ram 1st triball into goal
+    
+        // 2nd triball  
+        lift.move_relative(2, 100);             // Raise lift to drop intake
+        chassis.moveTo(54, -38, 1000);          // Reverse away from goal
+        lift.move_relative(-2, 100);            // Lower lift
+        intake.move(127);                       // Spin intake
+        turnMoveTo(9, -22, 300, 1400);          // Go to and intake closest middle triball
+        chassis.turnTo(9, -7, 300);             // Turn to be somewhat parallel with middle barrier
+        chassis.moveTo(9, -7, 1000);            // Move to triball
+        chassis.turnTo(47, -7, 600);            // Turn to face goal
+        intake.move(0);                         // Stop intake
+        wingLeft.set_value(1);                  // Extend left wing
+        intake.move(-127);                      // Shoot out triball
+        chassis.moveTo(47, -7, 1000);           // Ram 2 triballs into goal
+        intake.move(0);                         // Stop intake
+        wingLeft.set_value(0);                  // Retract left wing
+    
+        // Contact colored bar  
+        chassis.moveTo(35, -10, 1000);          // Reverse away from goal
+        chassis.turnTo(35, 53, 600);            // Turn away from colored bar
+        chassis.moveTo(35, -53, 2500);          // Reverse towards the colored bar
         
         lift = 127;                             // Raise lift
         chassis.turnTo(60, -53, 600);           // Turn back towards colored bar
@@ -86,10 +93,12 @@ void autonomous() {
         intake.move(0);                         // Stop intake
         lift = 127;                             // Raise lift
         chassis.turnTo(-72, -62, 750);          // Turn 180 degrees
-        //chassis.moveTo(-7, -62, 1500);          // Contact colored bar
+        
+        chassis.moveTo(-7, -62, 1500);          // Contact colored bar
 
-        chassis.moveTo(-13, -62, 1000);         // Almost contact colored bar but don't risk it
-        chassis.moveTo(-40, -62, 1000);         // Back up
+        // Eliminations Code
+        //chassis.moveTo(-13, -62, 1000);       // Almost contact colored bar but don't risk it
+        //chassis.moveTo(-40, -62, 1000);       // Back up
     }
 
     else if ( selector::auton == 3 || selector::auton == -3 || selector::auton == 0 ) {
@@ -99,16 +108,17 @@ void autonomous() {
         
         // Pre loads
         chassis.setPose(49, 58, 135);           // Start
-        chassis.moveTo(60, 47, 500);            // Move diagonally to align with goal
-        chassis.turnTo(60, 31, 300);            // Turn towards goal
-        chassis.moveTo(60, 20, 500);            // Ram 1st triball into goal
+        intake.move(60);
+        //chassis.moveTo(60, 47, 500);            // Move diagonally to align with goal
+        //chassis.turnTo(60, 72, 300);            // Turn away from goal
+        //chassis.moveTo(60, 20, 500);            // Ram 1st triball into goal
         lift.move_relative(4.2, 100);           // Raise lift
 
-        chassis.moveTo(60, 36, 500);            // Back up away from goal
+        //chassis.moveTo(60, 36, 500);            // Back up away from goal
         chassis.turnTo(70, 26, 300);            // Turn away from goal
         chassis.moveTo(50, 46, 400);            // Zig away from goal
         chassis.turnTo(30, 26, 300);            // Turn towards match load bar
-        chassis.moveTo(54, 50, 300);            // Zag towards match load bar
+        chassis.moveTo(54, 55, 300);            // Zag towards match load bar
         lift = 45;                              // Hold lift up
         driveLeft = -30;                        // Back up against match load bar
         driveRight = -30;                       // Back up against match load bar
@@ -121,11 +131,12 @@ void autonomous() {
         driveLilMiddleRight.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
         driveLilMiddleLeft.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
-        puncher = 127;                          // Wham bam punch kick pow boom wowie zowie
-        pros::delay(40000);                     // 40s delay
+        //puncher = 127;                          // Wham bam punch kick pow boom wowie zowie
+        pros::delay(5000);                     // 33s delay
         puncher = 0;                            // Stop puncher
         driveLeft = 0;                          // Stop left drive
         driveRight = 0;                         // Stop right drive
+        chassis.setPose(54, 55, 225);           // Set position after finishing shooting
         while ( pros::c::adi_digital_read(LIMIT_SWITCH) != HIGH ) { // Drops lift
             lift = -127;
         }
@@ -149,13 +160,16 @@ void autonomous() {
         driveLilMiddleRight.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
         driveLilMiddleLeft.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 
-        chassis.moveTo(54, 50, 300);            // Move away from bar
+        chassis.moveTo(51, 52, 300);            // Move away from bar
+        chassis.turnTo(71, 32, 300);            // Turn to 45 degree for backwards crossing field
+        chassis.moveTo(43, 60, 1000);           // Align for crossing
 
         turnMoveTo(24, 60, 500, 750);
         // 1st ram
         turnMoveTo(-26, 60, 500, 1000);
         chassis.moveTo(-59, 41, 500);
         chassis.turnTo(-59, 20, 300);
+        intake.move(0);
         chassis.moveTo(-59, 20, 750); // ram
         chassis.moveTo(-59, 38, 500);
         chassis.turnTo(-39, 38, 300); // away from goal

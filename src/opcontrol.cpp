@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/motors.h"
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -14,6 +15,13 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+    driveLeftFront.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    driveLeftBack.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    driveRightFront.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    driveRightBack.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    driveLilMiddleRight.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    driveLilMiddleLeft.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+
     pros::Task endgameRumble {[=] {
         pros::delay(88000);
         controller.rumble("-");
