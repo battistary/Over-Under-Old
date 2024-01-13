@@ -108,20 +108,16 @@ void autonomous() {
         
         // Pre loads
         chassis.setPose(49, 58, 135);           // Start
-        intake.move(60);
-        //chassis.moveTo(60, 47, 500);            // Move diagonally to align with goal
-        //chassis.turnTo(60, 72, 300);            // Turn away from goal
-        //chassis.moveTo(60, 20, 500);            // Ram 1st triball into goal
+        chassis.moveTo(60, 47, 500);            // Move diagonally to align with goal
+        chassis.turnTo(60, 31, 300);            // Turn towards goal
+        chassis.moveTo(60, 20, 1000);           // Ram 1st two triballs into goal
         lift.move_relative(4.2, 100);           // Raise lift
 
-        //chassis.moveTo(60, 36, 500);            // Back up away from goal
-        chassis.turnTo(70, 26, 300);            // Turn away from goal
-        chassis.moveTo(50, 46, 400);            // Zig away from goal
-        chassis.turnTo(30, 26, 300);            // Turn towards match load bar
-        chassis.moveTo(54, 55, 300);            // Zag towards match load bar
+        chassis.moveTo(60, 44, 750);            // Move in front of match-loading position
+        chassis.turnTo(-44, 17, 500);           // Turn to face opposite goal
+        chassis.moveTo(66, 43, 1000);           // Back into match-loading position
         lift = 45;                              // Hold lift up
-        driveLeft = -30;                        // Back up against match load bar
-        driveRight = -30;                       // Back up against match load bar
+        
 
         // Set drivetrain brake mode to hold
         driveLeftFront.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -131,8 +127,8 @@ void autonomous() {
         driveLilMiddleRight.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
         driveLilMiddleLeft.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
-        //puncher = 127;                          // Wham bam punch kick pow boom wowie zowie
-        pros::delay(5000);                     // 33s delay
+        puncher = 127;                          // Wham bam punch kick pow boom wowie zowie
+        pros::delay(30000);                     // 30s delay
         puncher = 0;                            // Stop puncher
         driveLeft = 0;                          // Stop left drive
         driveRight = 0;                         // Stop right drive
@@ -160,41 +156,70 @@ void autonomous() {
         driveLilMiddleRight.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
         driveLilMiddleLeft.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 
-        chassis.moveTo(51, 52, 300);            // Move away from bar
-        chassis.turnTo(71, 32, 300);            // Turn to 45 degree for backwards crossing field
-        chassis.moveTo(43, 60, 1000);           // Align for crossing
-
-        turnMoveTo(24, 60, 500, 750);
+        turnMoveTo(57, 37, 300, 400);           // Move away from bar
+        chassis.turnTo(67, 37, 300);            // Turn to 45 degree for backwards crossing field
+        chassis.moveTo(40, 54, 1000);           // Align for crossing
+        turnMoveTo(24, 60, 500, 750);           // Center with passage
         // 1st ram
-        turnMoveTo(-26, 60, 500, 1000);
-        chassis.moveTo(-59, 41, 500);
-        chassis.turnTo(-59, 20, 300);
-        intake.move(0);
-        chassis.moveTo(-59, 20, 750); // ram
-        chassis.moveTo(-59, 38, 500);
-        chassis.turnTo(-39, 38, 300); // away from goal
+        turnMoveTo(-26, 60, 500, 1000);         // Cross
+        chassis.moveTo(-59, 41, 500);           // Plow triballs towards goal
+        chassis.turnTo(-59, 20, 300);           // Turn to goal
+        chassis.moveTo(-59, -20, 750);          // Ram into goal *** MAX SPEED (timeouted) (+20 originally)
+        chassis.moveTo(-59, 38, 500);           // Back away from goal
+        chassis.moveTo(-59, -20, 750);          // Ram into goal *** MAX SPEED (timeouted) (+20 originally)
+        //chassis.setPose(-65, 30);             // FIND HEADING
+        chassis.moveTo(-59, 38, 500);           // Back away from goal
+        chassis.turnTo(-39, 38, 300);           // Turn away from goal
         
         // 2nd ram
-        chassis.moveTo(-39, 38, 1000);
-        turnMoveTo(-21, 26, 500, 1000);
-        turnMoveTo(-19, 18, 500, 1000);
-        turnMoveTo(-19, 0, 500, 1000);
-        wingLeft.set_value(1);
-        wingRight.set_value(1);
-        turnMoveTo(-44, 0, 500, 1000);
-        pros::delay(200);
+        chassis.moveTo(-36, 33, 1000);          // Move towards mid bar
+        chassis.turnTo(-17, 26, 500);           // Turn for triball sweep
+        wingLeft.set_value(1);                  // Deploy left wing
+        wingRight.set_value(1);                 // Deploy right wing
+        chassis.moveTo(-17, 26, 1000);          // Move towards middle of field
+        turnMoveTo(-17, 13, 500, 1000);         // Turn & move for ram
+        wingRight.set_value(0);
+        wingLeft.set_value(1);                  // Extend left wing
+        turnMoveTo(-72, 13, 500, 1000);         // Turn & Ram into goal
+        chassis.setPose(-45, 13, 270);          // Check degrees
 
         // 3rd ram
-        chassis.moveTo(-19, 0, 1000);
-        driveLeft = 127;
-        driveRight = 127;
-        pros::delay(3000);
-        driveLeft = 0;
-        driveRight = 0;
+        chassis.moveTo(-23, 13, 750);           // Back away from goal
+        chassis.turnTo(-18, 6, 500, true);      // Turn for sweep
+        wingLeft.set_value(1);                  // Extend left wing
+        wingRight.set_value(1);                 // Extend right wing
+        turnMoveTo(-17, -10, 500, 1000);        // Move to 0 y-alignment
+        turnMoveTo(-72, -10, 500, 1000);        // Turn & ram into goal *** MAX SPEED (timeouted) (-44 orignally)
+        chassis.setPose(-45, -10, 270);         // Check degrees
+
+        // 4th ram
+        chassis.moveTo(-33, 10, 750);           // Drive backwards out from goal
+        wingRight.set_value(0);                 // Retract right wing
+        turnMoveTo(-25, -22, 400, 750);         // Sweep triballs for ram
+        turnMoveTo(-49, -41, 300, 750);         // Move closer to goal
+        turnMoveTo(-60, -41, 300, 750);         // Line up to goal
+        turnMoveTo(-60, -19, 500, 1000);        // Turn & ram into goal
+        chassis.moveTo(-60, -40, 1000);         // Back away from goal
+        
         ////////////////////////
-        
-        
         /*
+        Old Final Ram
+        driveLeft = 127;                        // Set left drivetrain motors to max voltage
+        driveRight = 127;                       // Set right drivetrain motors to max voltage
+        pros::delay(3000);                      // Delay for 3 seconds
+        driveLeft = 0;                          // Set left drivetrain motor voltage to 0
+        driveRight = 0;                         // Set right drivetrain motor voltage to 0
+        chassis.moveTo(-24, 0, 1000);           // Stop contacting goal so that we're legal
+        
+        //driveLeft = -30;                        // Back up against match load bar
+        //driveRight = -30;                       // Back up against match load bar
+
+        //chassis.moveTo(60, 36, 500);            // Back up away from goal
+        //chassis.turnTo(70, 26, 300);            // Turn away from goal
+        //chassis.moveTo(50, 46, 400);            // Zig away from goal
+        //chassis.turnTo(30, 26, 300);            // Turn towards match load bar
+        //chassis.moveTo(54, 50, 300);            // Zag towards match load bar
+
         lift.move_relative(-2, 100);
 
         // Move to match load zone
